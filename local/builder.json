@@ -1,0 +1,19 @@
+{
+  "actualPlatform": "win32",
+  "apiLevel": "",
+  "appABIs": [],
+  "buildPath": "./build",
+  "debug": false,
+  "embedWebDebugger": false,
+  "keystoreAlias": "",
+  "keystoreAliasPassword": "",
+  "keystorePassword": "",
+  "keystorePath": "",
+  "platform": "win32",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "sourceMaps": false,
+  "template": "link",
+  "useDebugKeystore": true,
+  "vsVersion": "auto"
+}

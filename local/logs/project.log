@@ -1,0 +1,167 @@
+2018-09-04T09:23:33.737Z - normal: Load ~/.CocosCreator/settings.json
+2018-09-04T09:23:33.742Z - normal: checking language setting...
+2018-09-04T09:23:33.742Z - normal: Language: zh
+2018-09-04T09:23:35.482Z - success: protocol editor-framework registered
+2018-09-04T09:23:35.482Z - success: protocol app registered
+2018-09-04T09:23:35.482Z - success: protocol theme registered
+2018-09-04T09:23:35.482Z - success: protocol packages registered
+2018-09-04T09:23:35.482Z - success: protocol unpack registerred
+2018-09-04T09:23:35.482Z - success: protocol disable-commonjs registerred
+2018-09-04T09:23:35.763Z - normal: connected!
+2018-09-04T09:23:35.770Z - normal: Check project D:\work\w1\cocos-projects\complete_project
+2018-09-04T09:23:35.785Z - normal: Initializing project D:\work\w1\cocos-projects\complete_project
+2018-09-04T09:23:35.807Z - normal: Initializing Cocos2d
+2018-09-04T09:23:36.552Z - normal: Initializing Asset Database
+2018-09-04T09:23:36.601Z - success: protocol uuid registerred
+2018-09-04T09:23:36.601Z - success: protocol db registerred
+2018-09-04T09:23:36.601Z - success: protocol thumbnail registerred
+2018-09-04T09:23:36.601Z - normal: Loading editor/builtin packages
+2018-09-04T09:23:36.771Z - success: assets loaded
+2018-09-04T09:23:36.774Z - success: builder loaded
+2018-09-04T09:23:36.777Z - success: cocos-analytics loaded
+2018-09-04T09:23:36.780Z - success: console loaded
+2018-09-04T09:23:36.817Z - success: fb-instant-games loaded
+2018-09-04T09:23:36.822Z - success: hierarchy loaded
+2018-09-04T09:23:36.826Z - success: inspector loaded
+2018-09-04T09:23:36.827Z - success: keystore loaded
+2018-09-04T09:23:36.832Z - success: node-library loaded
+2018-09-04T09:23:36.833Z - success: package-asset loaded
+2018-09-04T09:23:36.834Z - success: preferences loaded
+2018-09-04T09:23:36.836Z - success: project-exporter loaded
+2018-09-04T09:23:36.853Z - success: project-importer loaded
+2018-09-04T09:23:36.856Z - success: project-settings loaded
+2018-09-04T09:23:36.860Z - success: ui-kit loaded
+2018-09-04T09:23:36.863Z - success: scene loaded
+2018-09-04T09:23:36.865Z - success: sprite-editor loaded
+2018-09-04T09:23:36.869Z - success: store loaded
+2018-09-04T09:23:36.873Z - success: timeline loaded
+2018-09-04T09:23:36.874Z - normal: Loading builtin packages
+2018-09-04T09:23:36.878Z - success: asset-db-debugger loaded
+2018-09-04T09:23:36.880Z - success: code-editor loaded
+2018-09-04T09:23:36.880Z - success: color-picker loaded
+2018-09-04T09:23:36.881Z - success: jsb-adapter loaded
+2018-09-04T09:23:36.884Z - success: package-manager loaded
+2018-09-04T09:23:37.004Z - success: qqplay-adapter loaded
+2018-09-04T09:23:37.009Z - success: sdkbox loaded
+2018-09-04T09:23:37.013Z - success: tester loaded
+2018-09-04T09:23:37.016Z - success: ui-grid loaded
+2018-09-04T09:23:37.019Z - success: ui-kit-preview-extra loaded
+2018-09-04T09:23:37.021Z - success: ui-kit-preview loaded
+2018-09-04T09:23:37.024Z - success: ui-tree loaded
+2018-09-04T09:23:37.025Z - success: weapp-adapter loaded
+2018-09-04T09:23:38.256Z - normal: Loading packages
+2018-09-04T09:23:38.263Z - normal: Watching packages
+2018-09-04T09:23:38.901Z - normal: Run Application
+2018-09-04T09:23:40.628Z - success: preview server running at http://localhost:7457
+2018-09-04T10:16:40.597Z - error: Can't init canvas 'Canvas' because it conflicts with the existing 'Canvas', the scene should only have one active canvas at the same time
+    at Object.cc.errorID (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCDebug.js:166:16)
+    at cc_Canvas.__preload (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\components\CCCanvas.js:79:31)
+    at call__preloadInTryCatch (eval at misc.tryCatchFunctor_EDITOR (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\misc.js:1:1), <anonymous>:5:32)
+    at CCClass._invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:185:29)
+    at CCClass.invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:49:22)
+    at CCClass.activateNode (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:164:34)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:640:48)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCNode.js:706:22)
+    at cc_Node.setParent (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:219:26)
+2018-09-04T10:17:08.069Z - error: Can't init canvas 'Canvas' because it conflicts with the existing 'Canvas', the scene should only have one active canvas at the same time
+    at Object.cc.errorID (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCDebug.js:166:16)
+    at cc_Canvas.__preload (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\components\CCCanvas.js:79:31)
+    at call__preloadInTryCatch (eval at misc.tryCatchFunctor_EDITOR (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\misc.js:1:1), <anonymous>:5:32)
+    at CCClass._invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:185:29)
+    at CCClass.invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:49:22)
+    at CCClass.activateNode (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:164:34)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:640:48)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCNode.js:706:22)
+    at cc_Node.setParent (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:219:26)
+2018-09-04T10:17:25.717Z - error: Can't init canvas 'Canvas' because it conflicts with the existing 'Canvas', the scene should only have one active canvas at the same time
+    at Object.cc.errorID (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCDebug.js:166:16)
+    at cc_Canvas.__preload (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\components\CCCanvas.js:79:31)
+    at call__preloadInTryCatch (eval at misc.tryCatchFunctor_EDITOR (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\misc.js:1:1), <anonymous>:5:32)
+    at CCClass._invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:185:29)
+    at CCClass.invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:49:22)
+    at CCClass.activateNode (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:164:34)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:640:48)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCNode.js:706:22)
+    at cc_Node.setParent (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:219:26)
+2018-09-04T10:17:34.813Z - error: Can't init canvas 'Canvas' because it conflicts with the existing 'Canvas', the scene should only have one active canvas at the same time
+    at Object.cc.errorID (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCDebug.js:166:16)
+    at cc_Canvas.__preload (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\components\CCCanvas.js:79:31)
+    at call__preloadInTryCatch (eval at misc.tryCatchFunctor_EDITOR (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\misc.js:1:1), <anonymous>:5:32)
+    at CCClass._invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:185:29)
+    at CCClass.invoke (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:49:22)
+    at CCClass.activateNode (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:164:34)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:640:48)
+    at cc_Node._onHierarchyChanged (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\CCNode.js:706:22)
+    at cc_Node.setParent (C:\CocosCreator\resources\engine\bin\.cache\dev\cocos2d\core\utils\base-node.js:219:26)
+2018-09-04T12:06:20.675Z - failed: [db-task][sync-changes] Failed to import asset D:\work\w1\cocos-projects\complete_project\assets\scripts\Star.js, message: Compile error: SyntaxError: D:/work/w1/cocos-projects/complete_project/assets/scripts/Star.js: Unexpected token (57:5)
+  55 |         var minOpacity = 50;
+  56 |         this.node.opacity = minOpacity + Math.floor(opacityRatio * (255 - minOpacity));
+> 57 |     },
+     |      ^
+  58 | });
+  59 | 
+    at Parser.pp$5.raise (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp$3.parseExprAtom (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3750:12)
+    at Parser.pp$3.parseExprSubscripts (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3494:19)
+    at Parser.pp$3.parseMaybeUnary (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
+    at Parser.pp$3.parseExpression (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3306:19)
+    at Parser.pp$1.parseStatement (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1906:19)
+2018-09-04T12:15:45.057Z - failed: [db-task][sync-changes] Failed to import asset D:\work\w1\cocos-projects\complete_project\assets\scripts\Game.js, message: Compile error: SyntaxError: D:/work/w1/cocos-projects/complete_project/assets/scripts/Game.js: Unexpected token, expected ; (120:13)
+  118 |         newStar.setPosition(this.getNewStarPosition());
+  119 | 
+> 120 |         pass Game instance to star
+      |              ^
+  121 |         newStar.getComponent('Star').init(this);
+  122 | 
+  123 |         // 在星星组件上暂存 Game 对象的引用
+    at Parser.pp$5.raise (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp.semicolon (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1742:38)
+    at Parser.pp$1.parseExpressionStatement (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:2236:8)
+    at Parser.pp$1.parseStatement (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1911:17)
+    at Parser.pp$1.parseBlockBody (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:2268:21)
+    at Parser.pp$1.parseBlock (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:2247:8)
+    at Parser.pp$3.parseFunctionBody (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4235:22)
+    at Parser.pp$1.parseFunction (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:2386:8)
+    at Parser.pp$3.parseFunctionExpression (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3760:17)
+2018-09-04T12:37:19.967Z - failed: [db-task][sync-changes] Failed to import asset D:\work\w1\cocos-projects\complete_project\assets\scripts\Player.js, message: Compile error: SyntaxError: D:/work/w1/cocos-projects/complete_project/assets/scripts/Player.js: Unexpected token (68:4)
+  66 |         this.jumpHeight=0,
+  67 |         this.jumpDuration=0.3,
+> 68 |     },
+     |     ^
+  69 | 
+  70 |     upgrade: function(){
+  71 |         this.jumpHeight += 5;
+    at Parser.pp$5.raise (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp$3.parseExprAtom (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3750:12)
+    at Parser.pp$3.parseExprSubscripts (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3494:19)
+    at Parser.pp$3.parseMaybeUnary (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
+    at Parser.pp$3.parseExpression (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3311:34)
+    at Parser.pp$1.parseStatement (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1906:19)
+2018-09-04T12:38:22.195Z - failed: [db-task][sync-changes] Failed to import asset D:\work\w1\cocos-projects\complete_project\assets\scripts\Player.js, message: Compile error: SyntaxError: D:/work/w1/cocos-projects/complete_project/assets/scripts/Player.js: Unexpected token (68:4)
+  66 |         this.jumpHeight=150,
+  67 |         this.jumpDuration=0.3,
+> 68 |     },
+     |     ^
+  69 | 
+  70 |     upgrade: function(){
+  71 |         this.jumpHeight += 5;
+    at Parser.pp$5.raise (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp$3.parseExprAtom (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3750:12)
+    at Parser.pp$3.parseExprSubscripts (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3494:19)
+    at Parser.pp$3.parseMaybeUnary (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
+    at Parser.pp$3.parseExpression (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3311:34)
+    at Parser.pp$1.parseStatement (C:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1906:19)
+2018-09-04T13:11:05.936Z - info: shutdown preview server
