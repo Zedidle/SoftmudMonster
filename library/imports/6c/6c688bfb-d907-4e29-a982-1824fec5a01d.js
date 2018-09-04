@@ -222,7 +222,7 @@ cc.Class({
 
     changeJumpStyle: function changeJumpStyle() {
         var jumpStyles = this.getJumpStyles('key');
-        this.jumpStyleDisplay.string = '跳跃模式: ' + jumpStyles[this.jumpStyleIndex];
+        this.jumpStyleDisplay.string = '跳法：' + jumpStyles[this.jumpStyleIndex];
 
         // 播放切换武器的声音
         cc.audioEngine.playEffect(this.switchJumpStyleAudio, false);
@@ -259,12 +259,14 @@ cc.Class({
         // 根据当前速度更新主角的位置
         this.node.x += this.xSpeed * dt;
 
+        var gameLevel = this.node.parent.getComponent('Game').gameLevel;
+
         // limit player position inside screen
-        if (this.node.x > this.node.parent.width / 2) {
-            this.node.x = this.node.parent.width / 2;
+        if (this.node.x > this.node.parent.width / 2 + gameLevel) {
+            this.node.x = this.node.parent.width / 2 + gameLevel;
             this.xSpeed = 0;
-        } else if (this.node.x < -this.node.parent.width / 2) {
-            this.node.x = -this.node.parent.width / 2;
+        } else if (this.node.x < -this.node.parent.width / 2 - gameLevel) {
+            this.node.x = -this.node.parent.width / 2 - gameLevel;
             this.xSpeed = 0;
         }
     }

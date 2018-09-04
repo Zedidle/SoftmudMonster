@@ -49,7 +49,6 @@ cc.Class({
         this.minPosX = -this.node.parent.width/2;
         this.maxPosX = this.node.parent.width/2;
 
-
         // 初始化键盘输入监听
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -221,7 +220,7 @@ cc.Class({
 
     changeJumpStyle: function(){
         let jumpStyles = this.getJumpStyles('key');
-        this.jumpStyleDisplay.string = '跳跃模式: ' + jumpStyles[this.jumpStyleIndex];
+        this.jumpStyleDisplay.string = '跳法：' + jumpStyles[this.jumpStyleIndex];
 
         // 播放切换武器的声音
         cc.audioEngine.playEffect(this.switchJumpStyleAudio, false);
@@ -258,12 +257,14 @@ cc.Class({
         // 根据当前速度更新主角的位置
         this.node.x += this.xSpeed * dt;
 
+        let gameLevel = this.node.parent.getComponent('Game').gameLevel;
+
         // limit player position inside screen
-        if ( this.node.x > this.node.parent.width/2) {
-            this.node.x = this.node.parent.width/2;
+        if ( this.node.x > (this.node.parent.width/2 + gameLevel)) {
+            this.node.x = this.node.parent.width/2 + gameLevel;
             this.xSpeed = 0;
-        } else if (this.node.x < -this.node.parent.width/2) {
-            this.node.x = -this.node.parent.width/2;
+        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel)) {
+            this.node.x = -this.node.parent.width/2 - gameLevel;
             this.xSpeed = 0;
         }
     },

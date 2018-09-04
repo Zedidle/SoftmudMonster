@@ -8,6 +8,12 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+
+        gameCamera: {
+            default: null,
+            type: cc.Camera
+        },
+
         // 这个属性引用了星星预制资源
         starPrefab: {
             default: null,
@@ -18,8 +24,9 @@ cc.Class({
             type: cc.Prefab
         },
         // 星星产生后消失时间的随机范围
-        maxStarDuration: 0,
-        minStarDuration: 0,
+        maxStarDuration: 5,
+        minStarDuration: 4,
+        gameLevel: 0,
         // 地面节点，用于确定星星生成的高度
         ground: {
             default: null,
@@ -65,6 +72,10 @@ cc.Class({
     },
 
     onLoad: function onLoad() {
+
+        var canvas = this.node;
+        // canvas.width
+
         // 获取地平面的 y 轴坐标
         this.groundY = this.ground.y + this.ground.height / 2 - 10;
 
@@ -83,11 +94,6 @@ cc.Class({
         var hintText = cc.sys.isMobile ? this.touchHint : this.keyboardHint;
         this.controlHintLabel.string = hintText;
 
-        // 生成一个新的星星
-        // this.spawnNewStar();
-        // 初始化计分
-        // this.score = 0;
-
         // initialize star and score pool
         this.starPool = new cc.NodePool('Star');
         this.scorePool = new cc.NodePool('ScoreFX');
@@ -103,7 +109,6 @@ cc.Class({
         this.gameOverNode.active = false;
         // reset player position and move speed
         this.player.getComponent('Player').startMoveAt(0, this.groundY);
-        // this.player.getComponent('Player').startMoveAt(0,0);
         // spawn star
         this.spawnNewStar();
     },
@@ -116,7 +121,6 @@ cc.Class({
         } else {
             newStar = cc.instantiate(this.starPrefab);
         }
-        // var newStar = cc.instantiate(this.starPrefab);
 
         // 将新增的节点添加到 Canvas 节点下面
         this.node.addChild(newStar);
@@ -128,13 +132,6 @@ cc.Class({
         // start star timer and store star reference
         this.startTimer();
         this.currentStar = newStar;
-
-        // 在星星组件上暂存 Game 对象的引用
-        // newStar.getComponent('Star').game = this;
-
-        // 重置计时器，根据消失时间范围随机取一个值
-        // this.starDuration = this.minStarDuration + Math.random() * (this.maxStarDuration - this.minStarDuration);
-        // this.timer = 0;
     },
 
     despawnStar: function despawnStar(star) {
@@ -146,6 +143,7 @@ cc.Class({
     startTimer: function startTimer() {
         // get a life duration for next star
         this.starDuration = this.minStarDuration + Math.random() * (this.maxStarDuration - this.minStarDuration);
+        this.starDuration -= this.gameLevel / 100;
         this.timer = 0;
     },
 
@@ -153,21 +151,11 @@ cc.Class({
         // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
         var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight;
         // 根据屏幕宽度，随机得到一个星星 x 坐标
-        var maxX = this.node.width / 2;
+        var maxX = this.node.width / 2 + this.gameLevel;
+
         var randX = (Math.random() - 0.5) * 2 * maxX;
         // 返回星星坐标
         return cc.v2(randX, randY);
-    },
-
-    update: function update(dt) {
-        // 每帧更新计时器，超过限度还没有生成新的星星
-        // 就会调用游戏失败逻辑
-        if (this.timer > this.starDuration) {
-            this.gameOver();
-            this.enabled = false; // disable gameOver logic to avoid load scene repeatedly
-            return;
-        }
-        this.timer += dt;
     },
 
     gainScore: function gainScore(pos) {
@@ -176,10 +164,10 @@ cc.Class({
         this.scoreDisplay.string = 'Score: ' + this.score;
 
         // 播放特效
-        // var fx = this.spawnScoreFX();
-        // this.node.addChild(fx.node);
-        // fx.node.setPosition(pos);
-        // fx.play();
+        var fx = this.spawnScoreFX();
+        this.node.addChild(fx.node);
+        fx.node.setPosition(pos);
+        fx.play();
 
         // 播放得分音效
         cc.audioEngine.playEffect(this.scoreAudio, false);
@@ -201,10 +189,40 @@ cc.Class({
         }
     },
 
-    // gameOver: function () {
-    //     this.player.stopAllActions(); //停止 player 节点的跳跃动作
-    //     cc.director.loadScene('game');
-    // }
+    despawnScoreFX: function despawnScoreFX(scoreFX) {
+        this.scorePool.put(scoreFX);
+    },
+
+
+    gameUpgrade: function gameUpgrade() {
+        this.gameLevel++;
+        if (this.gameLevel % 10 === 0) {
+            this.modifyCamera();
+        }
+    },
+
+    // 设置镜头
+    modifyCamera: function modifyCamera() {
+        var times = 0;
+        var modify = setInterval(function () {
+            this.gameCamera.zoomRatio *= 999 / 1000;
+            times++;
+            if (times == 10) {
+                clearInterval(modify);
+            }
+        }.bind(this), 25);
+    },
+
+    update: function update(dt) {
+        // 每帧更新计时器，超过限度还没有生成新的星星
+        // 就会调用游戏失败逻辑
+        if (this.timer > this.starDuration) {
+            this.gameOver();
+            this.enabled = false; // disable gameOver logic to avoid load scene repeatedly
+            return;
+        }
+        this.timer += dt;
+    },
 
     gameOver: function gameOver() {
         this.gameOverNode.active = true;
@@ -213,6 +231,8 @@ cc.Class({
         this.player.getComponent('Player').initProperties();
         this.currentStar.destroy();
         this.btnNode.x = 0;
+        this.gameLevel = 0;
+        this.gameCamera.zoomRatio = 1;
     }
 });
 

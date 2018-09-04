@@ -24,6 +24,7 @@ cc.Class({
     getPlayerDistance: function () {
         // 根据 player 节点位置判断距离
         var playerPos = this.game.player.getPosition();
+        playerPos.y += this.node.height * 1/2;
         // 根据两点位置计算两点之间距离
         var dist = this.node.position.sub(playerPos).mag();
         return dist;
@@ -38,6 +39,8 @@ cc.Class({
         
         // 角色升级
         this.game.player.getComponent('Player').upgrade();
+        // 游戏升级
+        this.game.gameUpgrade();
     },
 
     update: function (dt) {

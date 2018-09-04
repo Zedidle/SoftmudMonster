@@ -42,8 +42,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.3535533905932739,
-      "y": 0.3535533905932739,
+      "x": 0.1866065983073621,
+      "y": 0.1866065983073621,
       "z": 1
     },
     "_quat": {
@@ -115,7 +115,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1500,
+      "width": 1300,
       "height": 720
     },
     "_anchorPoint": {
@@ -125,7 +125,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 750,
+      "x": 650,
       "y": 360,
       "z": 0
     },
@@ -159,7 +159,7 @@
     },
     "_children": [],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 4
@@ -209,7 +209,7 @@
     "_skewY": 0,
     "_zIndex": 0,
     "groupIndex": 0,
-    "_id": "e8pHZPMAdM2LPptPu/npgA"
+    "_id": "5adHhnwB9LUqggJ2J+8zze"
   },
   {
     "__type__": "cc.Camera",
@@ -231,7 +231,7 @@
     "_depth": -1,
     "_zoomRatio": 1,
     "_targetTexture": null,
-    "_id": "50dbaYgYVDbaNyC2k7YlQN"
+    "_id": "78IVhAkotG5ZgjZHLq18xB"
   },
   {
     "__type__": "cc.Node",
@@ -259,8 +259,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 512,
-      "height": 362
+      "width": 1800,
+      "height": 1000
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -270,13 +270,13 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 11,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 2.95,
-      "y": 2,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_rotationX": 0,
@@ -307,8 +307,8 @@
     "_spriteFrame": {
       "__uuid__": "5ae5fc98-59fc-46aa-a111-ea45a3736d35"
     },
-    "_type": 0,
-    "_sizeMode": 1,
+    "_type": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -348,7 +348,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1332,
+      "width": 1800,
       "height": 256
     },
     "_anchorPoint": {
@@ -358,13 +358,13 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -4,
+      "x": 0,
       "y": -368,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1.2,
+      "x": 1,
       "y": 1,
       "z": 1
     },
@@ -542,8 +542,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "跳跃模式：正常",
-    "_N$string": "跳跃模式：正常",
+    "_string": "跳法：正常",
+    "_N$string": "跳法：正常",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -582,7 +582,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 280,
+      "width": 200,
       "height": 40
     },
     "_anchorPoint": {
@@ -977,8 +977,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 192.88,
-      "height": 80
+      "width": 358.68,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -987,8 +987,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -9,
-      "y": -310,
+      "x": 1.7,
+      "y": 340.4,
       "z": 0
     },
     "_scale": {
@@ -1023,9 +1023,9 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": true,
-    "_string": "A/D：左右加速\nW/S：切换跳法",
-    "_N$string": "A/D：左右加速\nW/S：切换跳法",
-    "_fontSize": 28,
+    "_string": "A/D：左右加速     W/S：切换跳法",
+    "_N$string": "A/D：左右加速     W/S：切换跳法",
+    "_fontSize": 24,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -1047,10 +1047,10 @@
     "_enabled": true,
     "_designResolution": {
       "__type__": "cc.Size",
-      "width": 1500,
+      "width": 1300,
       "height": 720
     },
-    "_fitWidth": false,
+    "_fitWidth": true,
     "_fitHeight": true,
     "_id": "50svK8t2ZGPbNf8RgtVzSv"
   },
@@ -1062,14 +1062,18 @@
       "__id__": 2
     },
     "_enabled": true,
+    "gameCamera": {
+      "__id__": 4
+    },
     "starPrefab": {
       "__uuid__": "3ccd5b0c-fd42-4360-8b3d-30e9cd933e6d"
     },
     "scoreFXPrefab": {
       "__uuid__": "e330da29-4b0f-40e6-a144-19c4db50f0a9"
     },
-    "maxStarDuration": 3,
-    "minStarDuration": 5,
+    "maxStarDuration": 5,
+    "minStarDuration": 4,
+    "gameLevel": 0,
     "ground": {
       "__id__": 7
     },
@@ -1091,8 +1095,8 @@
     "controlHintLabel": {
       "__id__": 23
     },
-    "keyboardHint": "A/D：左右加速\nW/S：切换跳法",
-    "touchHint": "点击下半(左/右)屏幕：向左/右加速\n点击上半(左/右)屏幕：切换跳法",
+    "keyboardHint": "A/D：左右加速   W/S：切换跳法",
+    "touchHint": "点击下半屏幕：左右加速\n点击上半屏幕：切换跳法",
     "_id": "4dAH6ppJFAzqAqm8x558HR"
   }
 ]
