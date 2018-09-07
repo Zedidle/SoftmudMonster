@@ -395,13 +395,13 @@
     "relativePath": "scripts\\RedStar.js"
   },
   "6c688bfb-d907-4e29-a982-1824fec5a01d": {
-    "asset": 1536337011487,
-    "meta": 1536337042791,
+    "asset": 1536342005447,
+    "meta": 1536342077823,
     "relativePath": "scripts\\Player.js"
   },
   "4e12f2d2-42ed-4bf8-a57a-426c4389abd4": {
-    "asset": 1536338471514,
-    "meta": 1536338475279,
+    "asset": 1536342507838,
+    "meta": 1536342514336,
     "relativePath": "scripts\\Game.js"
   }
 }

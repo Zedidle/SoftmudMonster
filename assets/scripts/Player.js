@@ -275,11 +275,11 @@ cc.Class({
         let gameLevel = this.node.parent.getComponent('Game').gameLevel;
 
         // limit player position inside screen
-        if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.6)) {
-            this.node.x = this.node.parent.width/2 + gameLevel*0.6;
+        if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.7)) {
+            this.node.x = this.node.parent.width/2 + gameLevel*0.7;
             this.xSpeed = 0;
-        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.6)) {
-            this.node.x = -this.node.parent.width/2 - gameLevel*0.6;
+        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.7)) {
+            this.node.x = -this.node.parent.width/2 - gameLevel*0.7;
             this.xSpeed = 0;
         }
     },

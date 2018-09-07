@@ -109,7 +109,6 @@ cc.Class({
         this.scorePool = new cc.NodePool('ScoreFX');
 
 
-
         this.spawnRedStar();
     },
 
@@ -145,7 +144,7 @@ cc.Class({
         var redStar = cc.instantiate(this.redStarPrefab);
         this.node.addChild(redStar);
 
-        var randY = this.node.width/2 - 240 - Math.random()*10;
+        var randY = this.node.width/2 - 210 - Math.random()*10;
         var randX = (Math.random() - 0.5) * 2 * this.node.width/2;
         redStar.setPosition(cc.v2(randX, randY));
         redStar.getComponent('RedStar').init(this);
@@ -213,7 +212,6 @@ cc.Class({
         // 播放得分音效
         cc.audioEngine.playEffect(this.scoreAudio, false);
 
-
         this.scoreKeeper++;
     },
     resetScore: function () {
@@ -253,7 +251,7 @@ cc.Class({
             if(times==11){
                 clearInterval(modify);
             }
-        }.bind(this),25)
+        }.bind(this),40)
     },
 
     update: function (dt) {
