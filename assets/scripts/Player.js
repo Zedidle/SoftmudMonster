@@ -8,9 +8,9 @@ cc.Class({
         // 主角跳跃持续时间
         jumpDuration: 0.3,
         // 辅助形变动作时间
-        squashDuration: 0,
+        squashDuration: 0.1,
         // 最大移动速度
-        maxMoveSpeed: 3000,
+        maxMoveSpeed: 3500,
         // 加速度
         accel: 250,
         // 跳跃音效资源
@@ -18,7 +18,7 @@ cc.Class({
             default: null,
             type: cc.AudioClip
         },
-
+        jumpActionArray:[],
         switchJumpStyleAudio: {
             default: null,
             type: cc.AudioClip
@@ -67,10 +67,9 @@ cc.Class({
     },        
 
     upgrade: function(){
-        this.jumpHeight += 2.5;
-        this.jumpDuration += 0.005;
+        this.jumpHeight += 1.5;
+        this.jumpDuration += 0.003;
         this.accel += 25;
-        this.updateJumpAction();
     },
 
     getJumpStyles: function(r){
@@ -104,7 +103,10 @@ cc.Class({
         return r==='key'?styleKeys:styleValues;
     },
 
-    updateJumpAction: function () {
+	jumping: function(){
+
+
+
 
         let jumpStyles = this.getJumpStyles();
         this.jumpStylesLength = jumpStyles.length;
@@ -113,7 +115,7 @@ cc.Class({
         var jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][0]]());
         // 下落
         var jumpDown = cc.moveBy(this.jumpDuration, cc.v2(0, -this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][1]]());
-        
+
         // 形变
         var squash = cc.scaleTo(this.squashDuration, 1, 0.6);
         var stretch = cc.scaleTo(this.squashDuration, 1, 1.2);
@@ -121,11 +123,25 @@ cc.Class({
 
         // 添加一个回调函数，用于在动作结束时调用我们定义的其他方法
         var callback = cc.callFunc(this.playJumpSound, this);
-        clearInterval(this.jumpInterval);
-        let t = this;
-        this.jumpInterval = setInterval(function(){
-            t.node.runAction(cc.repeat(cc.sequence(squash, stretch, jumpUp, scaleBack, jumpDown, callback),1));
-        },this.jumpDuration *2000 + this.squashDuration*3000);
+
+        this.node.runAction(cc.repeat(cc.sequence(squash, stretch, jumpUp, scaleBack, jumpDown, callback),1));
+        if(this.enabled){
+			let game = this.node.parent.getComponent('Game');
+			if(!game.thisJumpGetScore){
+				game.scoreKeeper = 1;
+			}
+			game.thisJumpGetScore = false;
+        	this.readyJump();
+        }
+    },
+
+    readyJump: function () {
+		let t = this;
+		setTimeout(function(){
+			if(t.enabled){
+				t.jumping();
+			}
+		},t.jumpDuration*2000+t.squashDuration*3000);
     },
 
     playJumpSound: function () {
@@ -142,7 +158,7 @@ cc.Class({
         this.enabled = true;
         this.xSpeed = 0;
         this.node.setPosition(x,y);
-        this.updateJumpAction();
+        this.readyJump();
     },
 
     stopMove: function () {
@@ -214,7 +230,6 @@ cc.Class({
                 this.jumpStyleIndex--;
             }
         }
-        this.updateJumpAction();
         this.changeJumpStyle();
     },
 
@@ -260,11 +275,11 @@ cc.Class({
         let gameLevel = this.node.parent.getComponent('Game').gameLevel;
 
         // limit player position inside screen
-        if ( this.node.x > (this.node.parent.width/2 + gameLevel)) {
-            this.node.x = this.node.parent.width/2 + gameLevel;
+        if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.6)) {
+            this.node.x = this.node.parent.width/2 + gameLevel*0.6;
             this.xSpeed = 0;
-        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel)) {
-            this.node.x = -this.node.parent.width/2 - gameLevel;
+        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.6)) {
+            this.node.x = -this.node.parent.width/2 - gameLevel*0.6;
             this.xSpeed = 0;
         }
     },

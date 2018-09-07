@@ -255,8 +255,8 @@
     "relativePath": "audio\\jump.mp3"
   },
   "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5": {
-    "asset": 1536080863909,
-    "meta": 1536080863929,
+    "asset": 1536339552435,
+    "meta": 1536339552456,
     "relativePath": "game.fire"
   },
   "5e9fa9a1-c6a0-4fcb-9cab-8bf22d49c771": {
@@ -270,7 +270,7 @@
     "relativePath": "mikado_outline_shadow.fnt"
   },
   "51b0ea7f-a166-4130-bf0b-7f70fc60cb1d": {
-    "asset": 1536073427627,
+    "asset": 1536338471647,
     "meta": 1526930962000,
     "relativePath": "scripts"
   },
@@ -280,7 +280,7 @@
     "relativePath": "Star.prefab"
   },
   "f2bd42d3-db89-4efd-b925-6233e5f0d525": {
-    "asset": 1536055183770,
+    "asset": 1536319189889,
     "meta": 1526930962000,
     "relativePath": "textures"
   },
@@ -308,11 +308,6 @@
     "asset": 1526930962000,
     "meta": 1535859564928,
     "relativePath": "textures\\ground.png"
-  },
-  "c7e7f505-0e8f-4e9e-bd0f-e728f8fad8e8": {
-    "asset": 1526930962000,
-    "meta": 1535859564960,
-    "relativePath": "textures\\star.png"
   },
   "6457c912-21c4-4917-b787-63053834a8f8": {
     "asset": 1535973154335,
@@ -369,24 +364,44 @@
     "meta": 1536055910913,
     "relativePath": "scripts\\ScoreFX.js"
   },
-  "4644fd26-d96b-4005-8472-fa99fa74e686": {
-    "asset": 1536070116069,
-    "meta": 1536070194278,
-    "relativePath": "scripts\\Star.js"
-  },
   "990c3106-4247-4da7-8760-e747a1dba55a": {
     "asset": 1526930962000,
     "meta": 1536071563231,
     "relativePath": "score_pop.anim"
   },
-  "4e12f2d2-42ed-4bf8-a57a-426c4389abd4": {
-    "asset": 1536081178413,
-    "meta": 1536081193952,
-    "relativePath": "scripts\\Game.js"
+  "c7e7f505-0e8f-4e9e-bd0f-e728f8fad8e8": {
+    "asset": 1536319174932,
+    "meta": 1536319190085,
+    "relativePath": "textures\\star.png"
+  },
+  "2585678a-7dc3-4974-87a2-4f8147d2aed5": {
+    "asset": 1536319147899,
+    "meta": 1536319190094,
+    "relativePath": "textures\\redStar.png"
+  },
+  "4644fd26-d96b-4005-8472-fa99fa74e686": {
+    "asset": 1536319827440,
+    "meta": 1536319852184,
+    "relativePath": "scripts\\Star.js"
+  },
+  "31f27465-f5af-428f-a244-0edaa43cf2a9": {
+    "asset": 1536339119408,
+    "meta": 1536339119423,
+    "relativePath": "redStar.prefab"
+  },
+  "15cafaf6-818d-47fd-94c7-4b0f6d92bcb6": {
+    "asset": 1536331612268,
+    "meta": 1536331695174,
+    "relativePath": "scripts\\RedStar.js"
   },
   "6c688bfb-d907-4e29-a982-1824fec5a01d": {
-    "asset": 1536081192556,
-    "meta": 1536081193955,
+    "asset": 1536337011487,
+    "meta": 1536337042791,
     "relativePath": "scripts\\Player.js"
+  },
+  "4e12f2d2-42ed-4bf8-a57a-426c4389abd4": {
+    "asset": 1536338471514,
+    "meta": 1536338475279,
+    "relativePath": "scripts\\Game.js"
   }
 }

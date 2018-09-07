@@ -3,7 +3,7 @@ cc.Class({
     
     properties: {
         // 星星和主角之间的距离小于这个数值时，就会完成收集
-        pickRadius: 0,
+        pickRadius: 60,
     },
 
     onLoad: function () {
@@ -21,14 +21,7 @@ cc.Class({
         this.init(game);
     },
 
-    getPlayerDistance: function () {
-        // 根据 player 节点位置判断距离
-        var playerPos = this.game.player.getPosition();
-        playerPos.y += this.node.height * 1/2;
-        // 根据两点位置计算两点之间距离
-        var dist = this.node.position.sub(playerPos).mag();
-        return dist;
-    },
+
 
     onPicked: function() {
         var pos = this.node.getPosition();
@@ -42,7 +35,14 @@ cc.Class({
         // 游戏升级
         this.game.gameUpgrade();
     },
-
+    getPlayerDistance: function () {
+        // 根据 player 节点位置判断距离
+        var playerPos = this.game.player.getPosition();
+        playerPos.y += this.node.height * 1/2;
+        // 根据两点位置计算两点之间距离
+        var dist = this.node.position.sub(playerPos).mag();
+        return dist;
+    },
     update: function (dt) {
         // 每帧判断和主角之间的距离是否小于收集距离
         if (this.getPlayerDistance() < this.pickRadius) {

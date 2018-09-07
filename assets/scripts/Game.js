@@ -3,6 +3,12 @@ cc.Class({
 
     properties: {
 
+        gameTimer:{
+            default:null,
+            type: cc.Label
+        },
+        timeKeeper:null,
+
         gameCamera:{
             default:null,
             type:cc.Camera
@@ -13,30 +19,38 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        redStarPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
         scoreFXPrefab: {
             default: null,
             type: cc.Prefab
         },
+        iniStarDuration:5,
         // 星星产生后消失时间的随机范围
-        maxStarDuration: 5,
-        minStarDuration: 4,
+        starDuration: 6,
         gameLevel:0,
+        cameraFarSpeed:10,  // 拉远镜头的等级频率
+
         // 地面节点，用于确定星星生成的高度
         ground: {
             default: null,
             type: cc.Node
         },
+
         // player 节点，用于获取主角弹跳的高度，和控制主角行动开关
         player: {
             default: null,
             type: cc.Node
         },
+        thisJumpGetScore:false,
+        scoreKeeper:1,
         // score label 的引用
         scoreDisplay: {
             default: null,
             type: cc.Label
         },
-
         // 得分音效资源
         scoreAudio: {
             default: null,
@@ -48,6 +62,10 @@ cc.Class({
             type: cc.Node
         },
         gameOverNode: {
+            default: null,
+            type: cc.Node
+        },
+        youWinNode: {
             default: null,
             type: cc.Node
         },
@@ -68,7 +86,6 @@ cc.Class({
     onLoad: function () {
 
     	let canvas = this.node;
-    	// canvas.width
 
         // 获取地平面的 y 轴坐标
         this.groundY = this.ground.y + this.ground.height/2 - 10;
@@ -79,7 +96,6 @@ cc.Class({
 
         // 初始化计时器
         this.timer = 0;
-        this.starDuration = 0;
 
         // is showing menu or running game
         this.enabled = false;
@@ -91,9 +107,26 @@ cc.Class({
         // initialize star and score pool
         this.starPool = new cc.NodePool('Star');
         this.scorePool = new cc.NodePool('ScoreFX');
+
+
+
+        this.spawnRedStar();
+    },
+
+    startGameTimer: function(){
+        let time = 0;
+        this.timeKeeper = setInterval(function(){
+            time += 0.1;
+            this.gameTimer.string = "Time: " + time.toFixed(1); 
+        }.bind(this),100);
+    },
+    stopGameTimer:function(){
+        clearInterval(this.timeKeeper);
     },
 
     onStartGame: function () {
+        // 开始计时
+        this.startGameTimer();
         // 初始化计分
         this.resetScore();
         // set game state to running
@@ -101,10 +134,21 @@ cc.Class({
         // set button and gameover text out of screen
         this.btnNode.x = 3000;
         this.gameOverNode.active = false;
+        this.youWinNode.active = false;
         // reset player position and move speed
         this.player.getComponent('Player').startMoveAt(0,this.groundY);
         // spawn star
         this.spawnNewStar();
+    },
+
+    spawnRedStar:function(){
+        var redStar = cc.instantiate(this.redStarPrefab);
+        this.node.addChild(redStar);
+
+        var randY = this.node.width/2 - 240 - Math.random()*10;
+        var randX = (Math.random() - 0.5) * 2 * this.node.width/2;
+        redStar.setPosition(cc.v2(randX, randY));
+        redStar.getComponent('RedStar').init(this);
     },
 
     spawnNewStar: function() {
@@ -135,16 +179,15 @@ cc.Class({
 
     startTimer: function () {
         // get a life duration for next star
-        this.starDuration = this.minStarDuration + Math.random() * (this.maxStarDuration - this.minStarDuration);
-        this.starDuration -= this.gameLevel / 100;
+        this.starDuration = this.iniStarDuration - this.gameLevel / 150;
         this.timer = 0;
     },
 
     getNewStarPosition: function () {
         // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
-        var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight;
+        var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 30;
         // 根据屏幕宽度，随机得到一个星星 x 坐标
-        var maxX = this.node.width/2 + this.gameLevel;
+        var maxX = this.node.width/2 + this.gameLevel*0.6;
 
         var randX = (Math.random() - 0.5) * 2 * maxX;
         // 返回星星坐标
@@ -153,18 +196,25 @@ cc.Class({
 
 
     gainScore: function (pos) {
-        this.score += 1;
+        this.score += this.scoreKeeper;
         // 更新 scoreDisplay Label 的文字
         this.scoreDisplay.string = 'Score: ' + this.score;
-       
+
+        this.thisJumpGetScore = true;
+
         // 播放特效
         var fx = this.spawnScoreFX();
+        var theScoreShow = fx.node.children[0].children[1]._components[0];
+        theScoreShow._string = "+"+this.scoreKeeper;
         this.node.addChild(fx.node);
         fx.node.setPosition(pos);
         fx.play();
         
         // 播放得分音效
         cc.audioEngine.playEffect(this.scoreAudio, false);
+
+
+        this.scoreKeeper++;
     },
     resetScore: function () {
         this.score = 0;
@@ -173,14 +223,14 @@ cc.Class({
 
     spawnScoreFX: function () {
         var fx;
-        if (this.scorePool.size() > 0) {
-            fx = this.scorePool.get();
-            return fx.getComponent('ScoreFX');
-        } else {
+        // if (this.scorePool.size() > 0) {
+        //     fx = this.scorePool.get();
+        //     return fx.getComponent('ScoreFX');
+        // } else {
             fx = cc.instantiate(this.scoreFXPrefab).getComponent('ScoreFX');
             fx.init(this);
             return fx;
-        }
+        // }
     },
 
     despawnScoreFX (scoreFX) {
@@ -189,7 +239,7 @@ cc.Class({
 
     gameUpgrade:function(){
         this.gameLevel++;
-        if(this.gameLevel%10 === 0){
+        if(this.gameLevel%this.cameraFarSpeed === 0){
             this.modifyCamera();
         }
     },
@@ -200,7 +250,7 @@ cc.Class({
         let modify = setInterval(function(){
             this.gameCamera.zoomRatio *= (999 / 1000);
             times++;
-            if(times==10){
+            if(times==11){
                 clearInterval(modify);
             }
         }.bind(this),25)
@@ -217,9 +267,17 @@ cc.Class({
         this.timer += dt;
     },
 
+    gameWin: function(){
+        this.youWinNode.active = true;
+        this.stopGameTimer();
+        this.player.getComponent('Player').stopMove();
+        this.enabled = false;
+        this.btnNode.x = 0;
+    },
+
     gameOver: function () {
+        this.stopGameTimer();
         this.gameOverNode.active = true;
-        // this.player.getComponent('Player').enabled = false;
         this.player.getComponent('Player').stopMove();
         this.player.getComponent('Player').initProperties();
         this.currentStar.destroy();
