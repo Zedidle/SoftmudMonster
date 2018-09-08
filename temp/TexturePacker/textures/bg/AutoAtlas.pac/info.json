@@ -1,0 +1,81 @@
+{
+  "packedTextures": [
+    {
+      "path": "D:\\work\\w1\\cocos-projects\\SoftmudMonster\\temp\\TexturePacker\\textures\\bg\\AutoAtlas.pac\\AutoAtlas-1.png",
+      "name": "AutoAtlas-1.png",
+      "size": "1024x1024"
+    },
+    {
+      "path": "D:\\work\\w1\\cocos-projects\\SoftmudMonster\\temp\\TexturePacker\\textures\\bg\\AutoAtlas.pac\\AutoAtlas-2.png",
+      "name": "AutoAtlas-2.png",
+      "size": "1024x1024"
+    }
+  ],
+  "unpackedTextures": [
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/d1/d1a49517-0629-49cb-b2dc-79914adb6ce2.png",
+      "name": "bg (1).png",
+      "size": "1924x1204"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/05/0549862d-910c-4c64-b4e0-00b7fbbaa34d.png",
+      "name": "bg (11).png",
+      "size": "1604x848"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/ac/acf26580-3585-452b-9b05-5309bf8f9660.png",
+      "name": "bg (12).png",
+      "size": "1924x1084"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/bd/bd3b77c4-ae28-4f1e-ae5e-5079971d0f9b.jpg",
+      "name": "bg (13).jpg",
+      "size": "1604x904"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/f8/f87f1dc4-4f7e-4dff-a15e-36da74c65c4d.png",
+      "name": "bg (13).png",
+      "size": "1924x1069"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/c2/c2b56068-26b9-4a18-98fc-bc785b473955.png",
+      "name": "bg (2).png",
+      "size": "1924x1084"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/fb/fb0e08df-9abc-4e79-bb64-45ee5429ab20.png",
+      "name": "bg (3).png",
+      "size": "1924x1084"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/26/26916e0c-f11b-40c2-8452-2bee4531dc7c.png",
+      "name": "bg (4).png",
+      "size": "3844x2164"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/e8/e8e714fe-8f4c-4f54-a11d-401268b23d7a.png",
+      "name": "bg (5).png",
+      "size": "1924x1084"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/f3/f3bdd6f7-1ac7-4f6e-88c8-8ebb2d919b41.png",
+      "name": "bg (6).png",
+      "size": "3844x2164"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/ab/abe3409b-aa25-4adf-814c-48e69d1eb70b.png",
+      "name": "bg (7).png",
+      "size": "1924x1069"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/57/57448874-c42b-490f-8ff0-150953c9fc84.png",
+      "name": "bg (8).png",
+      "size": "1924x1093"
+    },
+    {
+      "path": "D:/work/w1/cocos-projects/SoftmudMonster/library/imports/f6/f62b76e2-0d4e-4256-9726-9e0aaae6871d.png",
+      "name": "bg (9).png",
+      "size": "1924x1084"
+    }
+  ]
+}

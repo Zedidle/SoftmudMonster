@@ -8,7 +8,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
+        bgs: {
+            default: null,
+            type: cc.Node
+        },
         gameTimer: {
             default: null,
             type: cc.Label
@@ -19,12 +22,15 @@ cc.Class({
             default: null,
             type: cc.Camera
         },
-
+        starNumber: 1,
+        currentStarNumber: 1,
+        currentStars: [],
         // 这个属性引用了星星预制资源
         starPrefab: {
             default: null,
             type: cc.Prefab
         },
+        redStar: null,
         redStarPrefab: {
             default: null,
             type: cc.Prefab
@@ -34,10 +40,11 @@ cc.Class({
             type: cc.Prefab
         },
         iniStarDuration: 5,
-        // 星星产生后消失时间的随机范围
-        starDuration: 6,
+        starDuration: 0, // 星星产生后消失时间的随机范围
+
         gameLevel: 0,
         cameraFarSpeed: 10, // 拉远镜头的等级频率
+        starMoreSpeed: 20, // 星星数量增加的频率
 
         // 地面节点，用于确定星星生成的高度
         ground: {
@@ -91,13 +98,13 @@ cc.Class({
 
     onLoad: function onLoad() {
 
+        this.iniBg();
         var canvas = this.node;
 
         // 获取地平面的 y 轴坐标
         this.groundY = this.ground.y + this.ground.height / 2 - 10;
 
         // store last star's x position
-        this.currentStar = null;
         this.currentStarX = 0;
 
         // 初始化计时器
@@ -113,8 +120,38 @@ cc.Class({
         // initialize star and score pool
         this.starPool = new cc.NodePool('Star');
         this.scorePool = new cc.NodePool('ScoreFX');
+    },
 
-        this.spawnRedStar();
+    iniBg: function iniBg() {
+        this.bgs.zIndex = -10;
+        var bgChildren = this.bgs.children;
+        var l = bgChildren.length;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = bgChildren[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var i = _step.value;
+
+                i.active = false;
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        bgChildren[Math.floor(Math.random() * l)].active = true;
     },
 
     startGameTimer: function startGameTimer() {
@@ -129,6 +166,9 @@ cc.Class({
     },
 
     onStartGame: function onStartGame() {
+
+        this.iniBg();
+        this.gameCamera.zoomRatio = 1;
         // 开始计时
         this.startGameTimer();
         // 初始化计分
@@ -142,17 +182,21 @@ cc.Class({
         // reset player position and move speed
         this.player.getComponent('Player').startMoveAt(0, this.groundY);
         // spawn star
+
+        this.starNumber = 1;
+        this.starMoreSpeed = 20;
         this.spawnNewStar();
+        this.spawnRedStar();
     },
 
     spawnRedStar: function spawnRedStar() {
-        var redStar = cc.instantiate(this.redStarPrefab);
-        this.node.addChild(redStar);
+        this.redStar = cc.instantiate(this.redStarPrefab);
+        this.node.addChild(this.redStar);
 
-        var randY = this.node.width / 2 - 210 - Math.random() * 10;
+        var randY = 500;
         var randX = (Math.random() - 0.5) * 2 * this.node.width / 2;
-        redStar.setPosition(cc.v2(randX, randY));
-        redStar.getComponent('RedStar').init(this);
+        this.redStar.setPosition(cc.v2(randX, randY));
+        this.redStar.getComponent('RedStar').init(this);
     },
 
     spawnNewStar: function spawnNewStar() {
@@ -173,12 +217,19 @@ cc.Class({
 
         // start star timer and store star reference
         this.startTimer();
-        this.currentStar = newStar;
+        this.currentStars.push(newStar);
     },
 
     despawnStar: function despawnStar(star) {
         star.destroy();
-        this.spawnNewStar();
+        this.currentStarNumber--;
+        //如果当前场景中没有星星
+        if (!this.currentStarNumber) {
+            for (var i = 0; i < this.starNumber; i++) {
+                this.spawnNewStar();
+            }
+            this.currentStarNumber = this.starNumber;
+        }
     },
 
 
@@ -246,6 +297,10 @@ cc.Class({
         if (this.gameLevel % this.cameraFarSpeed === 0) {
             this.modifyCamera();
         }
+        if (this.gameLevel % this.starMoreSpeed === 0) {
+            this.starNumber++;
+            this.iniStarDuration += 0.5;
+        }
     },
 
     // 设置镜头
@@ -254,7 +309,8 @@ cc.Class({
         var modify = setInterval(function () {
             this.gameCamera.zoomRatio *= 999 / 1000;
             times++;
-            if (times == 11) {
+            // if(times==400){
+            if (times == 12) {
                 clearInterval(modify);
             }
         }.bind(this), 40);
@@ -273,22 +329,52 @@ cc.Class({
 
     gameWin: function gameWin() {
         this.youWinNode.active = true;
-        this.stopGameTimer();
-        this.player.getComponent('Player').stopMove();
-        this.enabled = false;
-        this.btnNode.x = 0;
+        this.again();
     },
 
     gameOver: function gameOver() {
-        this.stopGameTimer();
         this.gameOverNode.active = true;
+        this.again();
+    },
+
+    again: function again() {
         this.player.getComponent('Player').stopMove();
-        this.player.getComponent('Player').initProperties();
-        this.currentStar.destroy();
-        this.btnNode.x = 0;
+        this.stopGameTimer();
         this.gameLevel = 0;
-        this.gameCamera.zoomRatio = 1;
+        this.iniStarDuration = 6;
+        this.btnNode.x = 0;
+        this.enabled = false;
+        this.currentStarNumber = 1;
+        this.starPool.clear();
+        this.redStar.destroy();
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+            for (var _iterator2 = this.currentStars[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var i = _step2.value;
+
+                i.destroy();
+            }
+        } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
+                }
+            } finally {
+                if (_didIteratorError2) {
+                    throw _iteratorError2;
+                }
+            }
+        }
+
+        this.currentStars = [];
     }
+
 });
 
 cc._RF.pop();

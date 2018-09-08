@@ -27,7 +27,8 @@ cc.Class({
         var pos = this.node.getPosition();
         // 调用 Game 脚本的得分方法
         this.game.gainScore(pos);
-        // 当星星被收集时，调用 Game 脚本中的接口，销毁当前星星节点，生成一个新的星星
+        
+        // 当星星被收集时，调用 Game 脚本中的接口，销毁当前星星节点
         this.game.despawnStar(this.node);
         
         // 角色升级

@@ -18,7 +18,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        pickRadius: 80,
+        pickRadius: 70,
         game: null
     },
 

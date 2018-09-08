@@ -100,7 +100,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "1elFls4KxIL5DWY9/CHhPp"
+    "_id": "dePsDsp5NPC6hHFNwdFmwA"
   },
   {
     "__type__": "15cafr2gY1H/ZTHSw9tkry2",
@@ -110,9 +110,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "pickRadius": 80,
+    "pickRadius": 60,
     "game": null,
-    "_id": "3fUSVA+yRLqamOJU0QxAn6"
+    "_id": "6aNU1e2hdHgbozYW6GoEWB"
   },
   {
     "__type__": "cc.PrefabInfo",

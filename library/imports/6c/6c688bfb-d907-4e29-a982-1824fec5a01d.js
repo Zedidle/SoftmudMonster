@@ -14,11 +14,11 @@ cc.Class({
         // 主角跳跃持续时间
         jumpDuration: 0.3,
         // 辅助形变动作时间
-        squashDuration: 0.1,
+        squashDuration: 0.05,
         // 最大移动速度
-        maxMoveSpeed: 3500,
+        maxMoveSpeed: 3000,
         // 加速度
-        accel: 250,
+        accel: 300,
         // 跳跃音效资源
         jumpAudio: {
             default: null,
@@ -73,9 +73,9 @@ cc.Class({
     },
 
     upgrade: function upgrade() {
-        this.jumpHeight += 1.5;
-        this.jumpDuration += 0.003;
-        this.accel += 25;
+        this.jumpHeight += 1.2;
+        this.jumpDuration += 0.001;
+        this.accel += 10;
     },
 
     getJumpStyles: function getJumpStyles(r) {
@@ -157,6 +157,7 @@ cc.Class({
     startMoveAt: function startMoveAt(x, y) {
         this.enabled = true;
         this.xSpeed = 0;
+        this.initProperties();
         this.node.setPosition(x, y);
         this.readyJump();
     },
