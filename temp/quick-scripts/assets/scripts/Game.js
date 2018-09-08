@@ -93,6 +93,14 @@ cc.Class({
         touchHint: {
             default: '',
             multiline: true
+        },
+        gameWinAudio: {
+            default: null,
+            type: cc.AudioClip
+        },
+        gameOverAudio: {
+            default: null,
+            type: cc.AudioClip
         }
     },
 
@@ -330,11 +338,17 @@ cc.Class({
     gameWin: function gameWin() {
         this.youWinNode.active = true;
         this.again();
+
+        // 播放胜利音效
+        cc.audioEngine.playEffect(this.gameWinAudio, false);
     },
 
     gameOver: function gameOver() {
         this.gameOverNode.active = true;
         this.again();
+
+        // 播放失败音效
+        cc.audioEngine.playEffect(this.gameOverAudio, false);
     },
 
     again: function again() {

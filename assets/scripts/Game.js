@@ -88,6 +88,14 @@ cc.Class({
             default: '',
             multiline: true
         },
+        gameWinAudio: {
+            default: null,
+            type: cc.AudioClip
+        },
+        gameOverAudio: {
+            default: null,
+            type: cc.AudioClip
+        },
     },
 
     onLoad: function () {
@@ -301,12 +309,19 @@ cc.Class({
     gameWin: function(){
         this.youWinNode.active = true;
         this.again();
+        
+        // 播放胜利音效
+        cc.audioEngine.playEffect(this.gameWinAudio, false);
     },
 
     gameOver: function () {
         this.gameOverNode.active = true;
         this.again();
+
+        // 播放失败音效
+        cc.audioEngine.playEffect(this.gameOverAudio, false);
     },
+
 
     again:function(){
         this.player.getComponent('Player').stopMove();

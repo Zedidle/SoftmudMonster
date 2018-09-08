@@ -197,6 +197,7 @@ cc.Class({
 
     onTouchStart (event) {
         var touchLoc = event.getLocation();
+        console.log(touchLoc);
         if (touchLoc.x > cc.winSize.width/2) {
             if(touchLoc.y > cc.winSize.height/2){
                 this.switchJumpStyle(true);

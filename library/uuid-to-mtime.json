@@ -255,8 +255,8 @@
     "relativePath": "audio\\jump.mp3"
   },
   "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5": {
-    "asset": 1536414880788,
-    "meta": 1536414880817,
+    "asset": 1536419554410,
+    "meta": 1536419554440,
     "relativePath": "game.fire"
   },
   "5e9fa9a1-c6a0-4fcb-9cab-8bf22d49c771": {
@@ -484,14 +484,24 @@
     "meta": 1536401514097,
     "relativePath": "scripts\\bg.js"
   },
+  "561c67bb-514f-47e8-8fb3-5be1aa107349": {
+    "asset": 1536418847618,
+    "meta": 1536418889343,
+    "relativePath": "audio\\gameover.mp3"
+  },
   "6c688bfb-d907-4e29-a982-1824fec5a01d": {
-    "asset": 1536412268942,
-    "meta": 1536412273329,
+    "asset": 1536418929295,
+    "meta": 1536419002071,
     "relativePath": "scripts\\Player.js"
   },
   "4e12f2d2-42ed-4bf8-a57a-426c4389abd4": {
-    "asset": 1536414854450,
-    "meta": 1536414857450,
+    "asset": 1536419088778,
+    "meta": 1536419091446,
     "relativePath": "scripts\\Game.js"
+  },
+  "8aaf91a6-6faa-4758-bdb8-f5a2f6bf3de4": {
+    "asset": 1536419182280,
+    "meta": 1536419195462,
+    "relativePath": "audio\\gamewin.mp3"
   }
 }
