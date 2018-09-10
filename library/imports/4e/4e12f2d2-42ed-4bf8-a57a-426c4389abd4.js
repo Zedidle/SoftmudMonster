@@ -25,6 +25,8 @@ cc.Class({
         starNumber: 1,
         currentStarNumber: 1,
         currentStars: [],
+        mostHit: 0,
+
         // 这个属性引用了星星预制资源
         starPrefab: {
             default: null,
@@ -63,6 +65,11 @@ cc.Class({
         scoreDisplay: {
             default: null,
             type: cc.Label
+        },
+
+        farCameraAudio: {
+            default: null,
+            type: cc.AudioClip
         },
         // 得分音效资源
         scoreAudio: {
@@ -117,8 +124,9 @@ cc.Class({
         // store last star's x position
         this.currentStarX = 0;
 
-        // 初始化计时器
-        this.timer = 0;
+        // 初始化计时器和分数
+        this.time = 0;
+        this.score = 0;
 
         // is showing menu or running game
         this.enabled = false;
@@ -170,6 +178,10 @@ cc.Class({
         var c = this.menuHideAll();
         c[1].active = true;
     },
+    menuToAbout: function menuToAbout() {
+        var c = this.menuHideAll();
+        c[2].active = true;
+    },
 
     iniBg: function iniBg() {
         this.bgs.zIndex = -10;
@@ -204,10 +216,9 @@ cc.Class({
     },
 
     startGameTimer: function startGameTimer() {
-        var time = 0;
         this.timeKeeper = setInterval(function () {
-            time += 0.01;
-            this.gameTimer.string = "Time: " + time.toFixed(2);
+            this.time += 0.01;
+            this.gameTimer.string = "Time: " + this.time.toFixed(2);
         }.bind(this), 10);
     },
     stopGameTimer: function stopGameTimer() {
@@ -283,7 +294,6 @@ cc.Class({
 
 
     startTimer: function startTimer() {
-        // get a life duration for next star
         this.starDuration = this.iniStarDuration - this.gameLevel / 150;
         this.timer = 0;
     },
@@ -292,7 +302,7 @@ cc.Class({
         // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
         var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 30;
         // 根据屏幕宽度，随机得到一个星星 x 坐标
-        var maxX = this.node.width / 2 + this.gameLevel * 0.6;
+        var maxX = this.node.width / 2 + this.gameLevel * 0.55;
 
         var randX = (Math.random() - 0.5) * 2 * maxX;
         // 返回星星坐标
@@ -301,9 +311,11 @@ cc.Class({
 
     gainScore: function gainScore(pos) {
         this.score += this.scoreKeeper;
+        if (this.scoreKeeper > this.mostHit) {
+            this.mostHit = this.scoreKeeper;
+        }
         // 更新 scoreDisplay Label 的文字
         this.scoreDisplay.string = 'Score: ' + this.score;
-
         this.thisJumpGetScore = true;
 
         // 播放特效
@@ -339,7 +351,7 @@ cc.Class({
     gameUpgrade: function gameUpgrade() {
         this.gameLevel++;
         if (this.gameLevel % this.cameraFarSpeed === 0) {
-            this.modifyCamera();
+            this.farCamera();
         }
         if (this.gameLevel % this.starMoreSpeed === 0) {
             this.starNumber++;
@@ -348,15 +360,16 @@ cc.Class({
     },
 
     // 设置镜头
-    modifyCamera: function modifyCamera() {
+    farCamera: function farCamera() {
         var times = 0;
         var modify = setInterval(function () {
             this.gameCamera.zoomRatio *= 999 / 1000;
             times++;
-            if (times == 11) {
+            if (times == 10) {
                 clearInterval(modify);
             }
         }.bind(this), 40);
+        cc.audioEngine.playEffect(this.farCameraAudio, false);
     },
 
     update: function update(dt) {
@@ -371,9 +384,9 @@ cc.Class({
     },
 
     gameWin: function gameWin() {
+        this.youWinNode.children[0]._components[0]._string = 'Final Score: ' + (300 / this.time).toFixed(2) * this.score + '\n' + "Most Hit: " + this.mostHit;
         this.youWinNode.active = true;
         this.again();
-
         // 播放胜利音效
         cc.audioEngine.playEffect(this.gameWinAudio, false);
     },
@@ -381,19 +394,19 @@ cc.Class({
     gameOver: function gameOver() {
         this.gameOverNode.active = true;
         this.again();
-
-        // 播放失败音效
-        cc.audioEngine.playEffect(this.gameOverAudio, false);
+        cc.audioEngine.playEffect(this.gameOverAudio, false); // 播放失败音效
     },
 
     again: function again() {
         this.player.getComponent('Player').stopMove();
         this.stopGameTimer();
+        this.time = 0;
         this.gameLevel = 0;
         this.iniStarDuration = 6;
         this.menuNode.active = true;
         this.enabled = false;
         this.currentStarNumber = 1;
+        this.mostHit = 0;
         this.starPool.clear();
         this.redStar.destroy();
         var _iteratorNormalCompletion3 = true;

@@ -9,7 +9,7 @@ cc.Class({
         accel: 250, // 加速度
         squashDuration: 0.05, // 辅助形变动作时间
         maxMoveSpeed: 3000, // 最大移动速度
-        rise_jumpHeight:1.1,
+        rise_jumpHeight:1,
         rise_jumpDuration:0.001, 
         rise_accel:8,
         sur:{
@@ -25,8 +25,8 @@ cc.Class({
             type:cc.Label
         },
         player_sur:0,
-        player_jumpDuration:5,
-        player_accel:5,
+        player_jumpDuration:10,
+        player_accel:10,
 
         // attrSucc:false,  //是否成功修改属性
         canAttrAudio:{
@@ -49,6 +49,8 @@ cc.Class({
         },
         jumpInterval:null,
         jumpStyleIndex:0,
+
+        jumpStyles:null,
         jumpStylesLength:0,
         // jumpStyle label 的引用
         jumpStyleDisplay: {
@@ -62,6 +64,9 @@ cc.Class({
         // screen boundaries
         this.minPosX = -this.node.parent.width/2;
         this.maxPosX = this.node.parent.width/2;
+
+        this.jumpStyles = this.getJumpStyles();
+        this.jumpStylesLength = this.jumpStyles.length;
 
         this.initInput();
     },
@@ -85,8 +90,8 @@ cc.Class({
     },        
     upgrade: function(){
         this.jumpHeight += (this.rise_jumpHeight);
-        this.jumpDuration += this.rise_jumpDuration * (10 + this.player_jumpDuration) / 15;
-        this.accel += this.rise_accel * (10 + this.player_accel) / 15;
+        this.jumpDuration += this.rise_jumpDuration * (10 + this.player_jumpDuration) / 20;
+        this.accel += this.rise_accel * (10 + this.player_accel) / 20;
     },
     canAddAttr(){
         if(this.player_sur < 1){
@@ -97,7 +102,7 @@ cc.Class({
         }
     },
     canSubAttr(){
-        if(this.player_sur > 9){
+        if(this.player_sur > 19){
             return false;   
         }else{
             this.player_sur++;
@@ -115,7 +120,7 @@ cc.Class({
         this.playerAccelValue.string = this.player_accel;
     },
     addPlayerJumpDuration(){
-        if(this.playAttrAudio(this.player_jumpDuration<10&&this.canAddAttr())){
+        if(this.playAttrAudio(this.player_jumpDuration<20&&this.canAddAttr())){
             this.player_jumpDuration++;   
             this.updatePlayerAttr();
         }
@@ -127,7 +132,7 @@ cc.Class({
         }
     },
     addPlayerAccel(){
-        if(this.playAttrAudio(this.player_accel<10&&this.canAddAttr())){
+        if(this.playAttrAudio(this.player_accel<20&&this.canAddAttr())){
             this.player_accel++;
             this.updatePlayerAttr();
         }
@@ -173,23 +178,16 @@ cc.Class({
 
 	jumping: function(){
 
-        let jumpStyles = this.getJumpStyles();
-        this.jumpStylesLength = jumpStyles.length;
-
-        // 上升
-        var jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][0]]());
-        // 下落
-        var jumpDown = cc.moveBy(this.jumpDuration, cc.v2(0, -this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][1]]());
-
-        // 形变
-        var squash = cc.scaleTo(this.squashDuration, 1, 0.6);
-        var stretch = cc.scaleTo(this.squashDuration, 1, 1.2);
-        var scaleBack = cc.scaleTo(this.squashDuration, 1, 1);
-
-        // 添加一个回调函数，用于在动作结束时调用我们定义的其他方法
-        var callback = cc.callFunc(this.playJumpSound, this);
+        let jumpStyles = this.jumpStyles
+            ,jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][0]]())
+            ,jumpDown = cc.moveBy(this.jumpDuration, cc.v2(0, -this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][1]]())
+            ,squash = cc.scaleTo(this.squashDuration, 1, 0.6)
+            ,stretch = cc.scaleTo(this.squashDuration, 1, 1.2)
+            ,scaleBack = cc.scaleTo(this.squashDuration, 1, 1)
+            ,callback = cc.callFunc(this.playJumpSound, this);
 
         this.node.runAction(cc.repeat(cc.sequence(squash, stretch, jumpUp, scaleBack, jumpDown, callback),1));
+        
         if(this.enabled){
 			let game = this.node.parent.getComponent('Game');
 			if(!game.thisJumpGetScore){
@@ -218,6 +216,7 @@ cc.Class({
     },
 
     startMoveAt: function (x,y) {
+        this.enabled = true;
         this.enabled = true;
         this.xSpeed = 0; // 主角当前水平方向速度
         this.accLeft = false;  // 加速度方向开关
@@ -341,15 +340,14 @@ cc.Class({
         let gameLevel = this.node.parent.getComponent('Game').gameLevel;
 
         // limit player_ position inside screen
-        if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.7)) {
-            this.node.x = this.node.parent.width/2 + gameLevel*0.7;
+        if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.6)) {
+            this.node.x = this.node.parent.width/2 + gameLevel*0.6;
             this.xSpeed = 0;
-        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.7)) {
-            this.node.x = -this.node.parent.width/2 - gameLevel*0.7;
+        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.6)) {
+            this.node.x = -this.node.parent.width/2 - gameLevel*0.6;
             this.xSpeed = 0;
         }
     },
-
 });
 
 

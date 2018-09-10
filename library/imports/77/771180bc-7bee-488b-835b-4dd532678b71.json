@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "panel",
-    "texture": "e727a9ed-c1f3-481e-ad1a-f17aae6b0da3",
+    "name": "btn_about",
+    "texture": "cb6e8ef9-1cce-4a7b-8e17-5bc9b1ce320e",
     "atlas": "",
     "rect": [
       0,
       0,
-      613,
-      314
+      195,
+      57
     ],
     "offset": [
       0,
       0
     ],
     "originalSize": [
-      613,
-      314
+      195,
+      57
     ]
   }
 }
