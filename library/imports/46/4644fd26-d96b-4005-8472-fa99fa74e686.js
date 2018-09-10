@@ -38,6 +38,7 @@ cc.Class({
 
         // 角色升级
         this.game.player.getComponent('Player').upgrade();
+
         // 游戏升级
         this.game.gameUpgrade();
     },

@@ -2,17 +2,41 @@ cc.Class({
     extends: cc.Component,
     
     properties: {
-        initialHeight: 0,
-        // 主角跳跃高度
-        jumpHeight: 150,
-        // 主角跳跃持续时间
-        jumpDuration: 0.3,
-        // 辅助形变动作时间
-        squashDuration: 0.05,
-        // 最大移动速度
-        maxMoveSpeed: 3000,
-        // 加速度
-        accel: 300,
+        height: 0, //初始高度
+
+        jumpHeight: 150, // 主角跳跃高度
+        jumpDuration: 0.3, // 主角跳跃持续时间
+        accel: 250, // 加速度
+        squashDuration: 0.05, // 辅助形变动作时间
+        maxMoveSpeed: 3000, // 最大移动速度
+        rise_jumpHeight:1.1,
+        rise_jumpDuration:0.001, 
+        rise_accel:8,
+        sur:{
+            default:null,
+            type:cc.Label
+        },
+        playerJumpDurationValue:{
+            default:null,
+            type:cc.Label
+        },
+        playerAccelValue:{
+            default:null,
+            type:cc.Label
+        },
+        player_sur:0,
+        player_jumpDuration:5,
+        player_accel:5,
+
+        // attrSucc:false,  //是否成功修改属性
+        canAttrAudio:{
+            default:null,
+            type:cc.AudioClip
+        },
+        cannotAttrAudio:{
+            default:null,
+            type:cc.AudioClip
+        },
         // 跳跃音效资源
         jumpAudio: {
             default: null,
@@ -23,9 +47,7 @@ cc.Class({
             default: null,
             type: cc.AudioClip
         },
-
         jumpInterval:null,
-
         jumpStyleIndex:0,
         jumpStylesLength:0,
         // jumpStyle label 的引用
@@ -34,21 +56,17 @@ cc.Class({
             type: cc.Label
         },
     },
+
     onLoad: function() {
         this.enabled = false;
-
-        this.initProperties();
-
-        // 加速度方向开关
-        this.accLeft = false;
-        this.accRight = false;
-        // 主角当前水平方向速度
-        this.xSpeed = 0;
-
         // screen boundaries
         this.minPosX = -this.node.parent.width/2;
         this.maxPosX = this.node.parent.width/2;
 
+        this.initInput();
+    },
+
+    initInput:function(){
         // 初始化键盘输入监听
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -59,18 +77,68 @@ cc.Class({
         touchReceiver.on('touchend', this.onTouchEnd, this); 
     },
 
-    initProperties:function(){
-        this.initialHeight=0;
+    initAttr:function(){
+        this.height=0;
         this.jumpHeight=150;
         this.jumpDuration=0.3;
-        this.accel = 250;
+        this.accel=250;
     },        
-
     upgrade: function(){
-        this.jumpHeight += 1.2;
-        this.jumpDuration += 0.001;
-        this.accel += 10;
+        this.jumpHeight += (this.rise_jumpHeight);
+        this.jumpDuration += this.rise_jumpDuration * (10 + this.player_jumpDuration) / 15;
+        this.accel += this.rise_accel * (10 + this.player_accel) / 15;
     },
+    canAddAttr(){
+        if(this.player_sur < 1){
+            return false;
+        }else{
+            this.player_sur--;
+            return true;
+        }
+    },
+    canSubAttr(){
+        if(this.player_sur > 9){
+            return false;   
+        }else{
+            this.player_sur++;
+            return true;
+        }
+    },
+    playAttrAudio(bool){
+        console.log(bool)
+        cc.audioEngine.playEffect(this[bool?'canAttrAudio':'cannotAttrAudio'], false);
+        return bool;
+    },
+    updatePlayerAttr(){
+        this.sur.string = '剩余点数：' + this.player_sur;
+        this.playerJumpDurationValue.string = this.player_jumpDuration;
+        this.playerAccelValue.string = this.player_accel;
+    },
+    addPlayerJumpDuration(){
+        if(this.playAttrAudio(this.player_jumpDuration<10&&this.canAddAttr())){
+            this.player_jumpDuration++;   
+            this.updatePlayerAttr();
+        }
+    },
+    subPlayerJumpDuration(){
+        if(this.playAttrAudio(this.player_jumpDuration>0&&this.canSubAttr())){
+            this.player_jumpDuration--;
+            this.updatePlayerAttr();
+        }
+    },
+    addPlayerAccel(){
+        if(this.playAttrAudio(this.player_accel<10&&this.canAddAttr())){
+            this.player_accel++;
+            this.updatePlayerAttr();
+        }
+    },
+    subPlayerAccel(){
+        if(this.playAttrAudio(this.player_accel>0&&this.canSubAttr())){
+            this.player_accel--;   
+            this.updatePlayerAttr();
+        }
+    },
+
 
     getJumpStyles: function(r){
 
@@ -135,9 +203,7 @@ cc.Class({
     readyJump: function () {
 		let t = this;
 		setTimeout(function(){
-			if(t.enabled){
-				t.jumping();
-			}
+			if(t.enabled) t.jumping();
 		},t.jumpDuration*2000+t.squashDuration*3000);
     },
 
@@ -153,10 +219,12 @@ cc.Class({
 
     startMoveAt: function (x,y) {
         this.enabled = true;
-        this.xSpeed = 0;
-        this.initProperties();
-        this.node.setPosition(x,y);
+        this.xSpeed = 0; // 主角当前水平方向速度
+        this.accLeft = false;  // 加速度方向开关
+        this.accRight = false;
+        this.initAttr();
         this.readyJump();
+        this.node.setPosition(x,y);
     },
 
     stopMove: function () {
@@ -197,7 +265,6 @@ cc.Class({
 
     onTouchStart (event) {
         var touchLoc = event.getLocation();
-        console.log(touchLoc);
         if (touchLoc.x > cc.winSize.width/2) {
             if(touchLoc.y > cc.winSize.height/2){
                 this.switchJumpStyle(true);
@@ -273,7 +340,7 @@ cc.Class({
 
         let gameLevel = this.node.parent.getComponent('Game').gameLevel;
 
-        // limit player position inside screen
+        // limit player_ position inside screen
         if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.7)) {
             this.node.x = this.node.parent.width/2 + gameLevel*0.7;
             this.xSpeed = 0;

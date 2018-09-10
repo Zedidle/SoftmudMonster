@@ -70,7 +70,7 @@ cc.Class({
             type: cc.AudioClip
         },
 
-        btnNode: {
+        menuNode: {
             default: null,
             type: cc.Node
         },
@@ -106,6 +106,8 @@ cc.Class({
 
     onLoad: function onLoad() {
 
+        this.menuToFirstPanel();
+
         this.iniBg();
         var canvas = this.node;
 
@@ -130,16 +132,15 @@ cc.Class({
         this.scorePool = new cc.NodePool('ScoreFX');
     },
 
-    iniBg: function iniBg() {
-        this.bgs.zIndex = -10;
-        var bgChildren = this.bgs.children;
-        var l = bgChildren.length;
+    // 关于菜单部分
+    menuHideAll: function menuHideAll() {
+        var c = this.menuNode.children;
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
 
         try {
-            for (var _iterator = bgChildren[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            for (var _iterator = c[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var i = _step.value;
 
                 i.active = false;
@@ -159,15 +160,55 @@ cc.Class({
             }
         }
 
+        return c;
+    },
+    menuToFirstPanel: function menuToFirstPanel() {
+        var c = this.menuHideAll();
+        c[0].active = true;
+    },
+    menuToAttribute: function menuToAttribute() {
+        var c = this.menuHideAll();
+        c[1].active = true;
+    },
+
+    iniBg: function iniBg() {
+        this.bgs.zIndex = -10;
+        var bgChildren = this.bgs.children;
+        var l = bgChildren.length;
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+            for (var _iterator2 = bgChildren[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var i = _step2.value;
+
+                i.active = false;
+            }
+        } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
+                }
+            } finally {
+                if (_didIteratorError2) {
+                    throw _iteratorError2;
+                }
+            }
+        }
+
         bgChildren[Math.floor(Math.random() * l)].active = true;
     },
 
     startGameTimer: function startGameTimer() {
         var time = 0;
         this.timeKeeper = setInterval(function () {
-            time += 0.1;
-            this.gameTimer.string = "Time: " + time.toFixed(1);
-        }.bind(this), 100);
+            time += 0.01;
+            this.gameTimer.string = "Time: " + time.toFixed(2);
+        }.bind(this), 10);
     },
     stopGameTimer: function stopGameTimer() {
         clearInterval(this.timeKeeper);
@@ -184,7 +225,7 @@ cc.Class({
         // set game state to running
         this.enabled = true;
         // set button and gameover text out of screen
-        this.btnNode.x = 3000;
+        this.menuNode.active = false;
         this.gameOverNode.active = false;
         this.youWinNode.active = false;
         // reset player position and move speed
@@ -285,14 +326,9 @@ cc.Class({
 
     spawnScoreFX: function spawnScoreFX() {
         var fx;
-        // if (this.scorePool.size() > 0) {
-        //     fx = this.scorePool.get();
-        //     return fx.getComponent('ScoreFX');
-        // } else {
         fx = cc.instantiate(this.scoreFXPrefab).getComponent('ScoreFX');
         fx.init(this);
         return fx;
-        // }
     },
 
     despawnScoreFX: function despawnScoreFX(scoreFX) {
@@ -317,8 +353,7 @@ cc.Class({
         var modify = setInterval(function () {
             this.gameCamera.zoomRatio *= 999 / 1000;
             times++;
-            // if(times==400){
-            if (times == 12) {
+            if (times == 11) {
                 clearInterval(modify);
             }
         }.bind(this), 40);
@@ -356,32 +391,32 @@ cc.Class({
         this.stopGameTimer();
         this.gameLevel = 0;
         this.iniStarDuration = 6;
-        this.btnNode.x = 0;
+        this.menuNode.active = true;
         this.enabled = false;
         this.currentStarNumber = 1;
         this.starPool.clear();
         this.redStar.destroy();
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
         try {
-            for (var _iterator2 = this.currentStars[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var i = _step2.value;
+            for (var _iterator3 = this.currentStars[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var i = _step3.value;
 
                 i.destroy();
             }
         } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
+            _didIteratorError3 = true;
+            _iteratorError3 = err;
         } finally {
             try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
+                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                    _iterator3.return();
                 }
             } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
+                if (_didIteratorError3) {
+                    throw _iteratorError3;
                 }
             }
         }

@@ -64,7 +64,7 @@ cc.Class({
             type: cc.AudioClip
         },
 
-        btnNode: {
+        menuNode: {
             default: null,
             type: cc.Node
         },
@@ -100,6 +100,9 @@ cc.Class({
 
     onLoad: function () {
 
+    	this.menuToFirstPanel();
+
+
         this.iniBg();
         let canvas = this.node;
 
@@ -124,6 +127,24 @@ cc.Class({
         this.scorePool = new cc.NodePool('ScoreFX');
     },
 
+    // 关于菜单部分
+    menuHideAll:function(){
+    	let c = this.menuNode.children;
+    	for(let i of c){
+    		i.active = false;
+    	}
+    	return c;
+    },
+    menuToFirstPanel:function(){
+    	let c = this.menuHideAll();
+    	c[0].active = true;
+    },
+    menuToAttribute:function(){
+    	let c = this.menuHideAll();
+    	c[1].active = true;
+    },
+
+
     iniBg: function(){
         this.bgs.zIndex = -10;
         let bgChildren = this.bgs.children;
@@ -137,9 +158,9 @@ cc.Class({
     startGameTimer: function(){
         let time = 0;
         this.timeKeeper = setInterval(function(){
-            time += 0.1;
-            this.gameTimer.string = "Time: " + time.toFixed(1); 
-        }.bind(this),100);
+            time += 0.01;
+            this.gameTimer.string = "Time: " + time.toFixed(2); 
+        }.bind(this),10);
     },
     stopGameTimer:function(){
         clearInterval(this.timeKeeper);
@@ -156,7 +177,7 @@ cc.Class({
         // set game state to running
         this.enabled = true;
         // set button and gameover text out of screen
-        this.btnNode.x = 3000;
+        this.menuNode.active = false;
         this.gameOverNode.active = false;
         this.youWinNode.active = false;
         // reset player position and move speed
@@ -257,14 +278,9 @@ cc.Class({
 
     spawnScoreFX: function () {
         var fx;
-        // if (this.scorePool.size() > 0) {
-        //     fx = this.scorePool.get();
-        //     return fx.getComponent('ScoreFX');
-        // } else {
-            fx = cc.instantiate(this.scoreFXPrefab).getComponent('ScoreFX');
-            fx.init(this);
-            return fx;
-        // }
+        fx = cc.instantiate(this.scoreFXPrefab).getComponent('ScoreFX');
+        fx.init(this);
+        return fx;
     },
 
     despawnScoreFX (scoreFX) {
@@ -288,8 +304,7 @@ cc.Class({
         let modify = setInterval(function(){
             this.gameCamera.zoomRatio *= (999 / 1000);
             times++;
-            // if(times==400){
-            if(times==12){
+            if(times==11){
                 clearInterval(modify);
             }
         }.bind(this),40)
@@ -328,7 +343,7 @@ cc.Class({
         this.stopGameTimer();
         this.gameLevel = 0;
         this.iniStarDuration = 6;
-        this.btnNode.x = 0;
+        this.menuNode.active = true;
         this.enabled = false;
         this.currentStarNumber = 1;
         this.starPool.clear();
