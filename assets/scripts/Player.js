@@ -2,6 +2,12 @@ cc.Class({
     extends: cc.Component,
     
     properties: {
+
+        controller:{
+            default:null,
+            type:cc.Node
+        },
+
         height: 0, //初始高度
 
         jumpHeight: 150, // 主角跳跃高度
@@ -77,7 +83,9 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         // 手机触摸屏
-        var touchReceiver = cc.Canvas.instance.node;
+        // var touchReceiver = cc.Canvas.instance.node;
+        // var touchReceiver = this.node.children[0];
+        var touchReceiver = this.controller;
         touchReceiver.on('touchstart', this.onTouchStart, this);
         touchReceiver.on('touchend', this.onTouchEnd, this); 
     },
@@ -91,7 +99,7 @@ cc.Class({
     upgrade: function(){
         this.jumpHeight += (this.rise_jumpHeight);
         this.jumpDuration += this.rise_jumpDuration * (10 + this.player_jumpDuration) / 20;
-        this.accel += this.rise_accel * (10 + this.player_accel) / 20;
+        this.accel += this.rise_accel * (10 + this.player_accel) / 25;
     },
     canAddAttr(){
         if(this.player_sur < 1){
@@ -110,7 +118,6 @@ cc.Class({
         }
     },
     playAttrAudio(bool){
-        console.log(bool)
         cc.audioEngine.playEffect(this[bool?'canAttrAudio':'cannotAttrAudio'], false);
         return bool;
     },
@@ -126,6 +133,7 @@ cc.Class({
         }
     },
     subPlayerJumpDuration(){
+        console.log(this.node.children[0])
         if(this.playAttrAudio(this.player_jumpDuration>0&&this.canSubAttr())){
             this.player_jumpDuration--;
             this.updatePlayerAttr();
@@ -151,7 +159,7 @@ cc.Class({
             // '起跳'
             '正常',
             '漂浮',
-            // '弹簧',
+            '弹簧',
             // '震动',
             '二段',
             '轻功',
@@ -164,7 +172,7 @@ cc.Class({
             // ['easeExponentialOut','easeExponentialIn'] //起跳
             ['easeCubicActionOut','easeCubicActionIn']  //正常
             ,['easeSineOut','easeSineIn'] //漂浮
-            // ,['easeElasticOut','easeElasticIn'] //弹簧
+            ,['easeElasticOut','easeElasticIn'] //弹簧
             // ,['easeBounceOut','easeBounceIn'] //震动
             ,['easeBackOut','easeBackIn'] //二段
             ,['easeQuadraticActionOut','easeQuadraticActionIn']  //轻功
@@ -265,14 +273,14 @@ cc.Class({
     onTouchStart (event) {
         var touchLoc = event.getLocation();
         if (touchLoc.x > cc.winSize.width/2) {
-            if(touchLoc.y > cc.winSize.height/2){
+            if(touchLoc.y > cc.winSize.height * 0.6){
                 this.switchJumpStyle(true);
             }else{
                 this.accLeft = false;
                 this.accRight = true;
             }
         } else {
-            if(touchLoc.y > cc.winSize.height/2){
+            if(touchLoc.y > cc.winSize.height * 0.6){
                 this.switchJumpStyle(false);
             }else{
                 this.accLeft = true;
@@ -316,7 +324,9 @@ cc.Class({
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
        
-        var touchReceiver = cc.Canvas.instance.node;
+        // var touchReceiver = cc.Canvas.instance.node;
+        // var touchReceiver = this.node.children[0];
+        var touchReceiver = this.controller;
         touchReceiver.off('touchstart', this.onTouchStart, this);
         touchReceiver.off('touchend', this.onTouchEnd, this);
     },    

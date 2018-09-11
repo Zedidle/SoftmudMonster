@@ -35,7 +35,7 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
-        iniStarDuration:5,
+        iniStarDuration:6,
         starDuration: 0,   // 星星产生后消失时间的随机范围
 
         gameLevel:0,
@@ -204,7 +204,7 @@ cc.Class({
         this.redStar = cc.instantiate(this.redStarPrefab);
         this.node.addChild(this.redStar);
 
-        var randY = 500;
+        var randY = 440;
         var randX = (Math.random() - 0.5) * 2 * this.node.width/2;
         this.redStar.setPosition(cc.v2(randX, randY));
         this.redStar.getComponent('RedStar').init(this);
@@ -252,8 +252,8 @@ cc.Class({
         // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
         var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 30;
         // 根据屏幕宽度，随机得到一个星星 x 坐标
-        var maxX = this.node.width/2 + this.gameLevel*0.55;
-
+        // var maxX = this.node.width/2 + this.gameLevel*0.3;
+        var maxX = this.node.width/2;
         var randX = (Math.random() - 0.5) * 2 * maxX;
         // 返回星星坐标
         return cc.v2(randX, randY);
@@ -334,7 +334,7 @@ cc.Class({
     },
 
     gameWin: function(){
-        this.youWinNode.children[0]._components[0]._string = 'Final Score: '+ (300 / this.time).toFixed(2) * this.score + '\n' + "Most Hit: "+this.mostHit;
+        this.youWinNode.children[0]._components[0]._string = 'Final Score: '+ ((300 / this.time) * this.score) .toFixed(2) + '\n' + "Most Hit: "+this.mostHit;
         this.youWinNode.active = true;
         this.again();
         // 播放胜利音效

@@ -265,7 +265,7 @@
     "relativePath": "mikado_outline_shadow.fnt"
   },
   "51b0ea7f-a166-4130-bf0b-7f70fc60cb1d": {
-    "asset": 1536578656111,
+    "asset": 1536580676418,
     "meta": 1526930962000,
     "relativePath": "scripts"
   },
@@ -414,20 +414,10 @@
     "meta": 1536565091881,
     "relativePath": "textures\\btn_about.png"
   },
-  "6c688bfb-d907-4e29-a982-1824fec5a01d": {
-    "asset": 1536568605673,
-    "meta": 1536568703569,
-    "relativePath": "scripts\\Player.js"
-  },
   "f87f1dc4-4f7e-4dff-a15e-36da74c65c4d": {
     "asset": 1536569249558,
     "meta": 1536571461142,
     "relativePath": "textures\\bgs\\bg (13).png"
-  },
-  "01994c6d-7d1f-40f0-83e3-d63f952250cd": {
-    "asset": 1536344854000,
-    "meta": 1536571461182,
-    "relativePath": "textures\\bgs\\bg (16).jpg"
   },
   "fb0e08df-9abc-4e79-bb64-45ee5429ab20": {
     "asset": 1536344854000,
@@ -455,8 +445,8 @@
     "relativePath": "textures\\bgs\\bg (9).png"
   },
   "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5": {
-    "asset": 1536579922778,
-    "meta": 1536579922807,
+    "asset": 1536644692404,
+    "meta": 1536644692464,
     "relativePath": "game.fire"
   },
   "d8dec1a2-7a41-465f-82ec-870a6b86c2d6": {
@@ -485,8 +475,13 @@
     "relativePath": "audio\\farCamera.mp3"
   },
   "4e12f2d2-42ed-4bf8-a57a-426c4389abd4": {
-    "asset": 1536580676270,
-    "meta": 1536580687478,
+    "asset": 1536643459823,
+    "meta": 1536643468117,
     "relativePath": "scripts\\Game.js"
+  },
+  "6c688bfb-d907-4e29-a982-1824fec5a01d": {
+    "asset": 1536643506640,
+    "meta": 1536643507431,
+    "relativePath": "scripts\\Player.js"
   }
 }

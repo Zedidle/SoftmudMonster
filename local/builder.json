@@ -1,5 +1,5 @@
 {
-  "actualPlatform": "win32",
+  "actualPlatform": "web-mobile",
   "apiLevel": "",
   "appABIs": [],
   "buildPath": "./build",
@@ -9,7 +9,7 @@
   "keystoreAliasPassword": "",
   "keystorePassword": "",
   "keystorePath": "",
-  "platform": "win32",
+  "platform": "web-mobile",
   "previewHeight": "720",
   "previewWidth": "1280",
   "sourceMaps": false,
