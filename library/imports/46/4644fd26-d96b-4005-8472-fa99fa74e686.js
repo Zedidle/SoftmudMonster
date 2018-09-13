@@ -9,7 +9,7 @@ cc.Class({
 
     properties: {
         // 星星和主角之间的距离小于这个数值时，就会完成收集
-        pickRadius: 60
+        pickRadius: 70
     },
 
     onLoad: function onLoad() {

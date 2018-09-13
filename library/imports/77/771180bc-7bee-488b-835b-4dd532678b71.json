@@ -1,7 +1,7 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "btn_about",
+    "name": "menuBtn",
     "texture": "cb6e8ef9-1cce-4a7b-8e17-5bc9b1ce320e",
     "atlas": "",
     "rect": [

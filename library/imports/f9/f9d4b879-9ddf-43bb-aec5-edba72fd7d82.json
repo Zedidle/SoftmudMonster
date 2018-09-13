@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "bg (13)",
-    "texture": "f87f1dc4-4f7e-4dff-a15e-36da74c65c4d",
+    "name": "alipay",
+    "texture": "23bbaa72-50a9-4092-a9fb-5c53710b3c41",
     "atlas": "",
     "rect": [
       0,
       0,
-      953,
-      527
+      206,
+      204
     ],
     "offset": [
       0,
       0
     ],
     "originalSize": [
-      953,
-      527
+      206,
+      204
     ]
   }
 }

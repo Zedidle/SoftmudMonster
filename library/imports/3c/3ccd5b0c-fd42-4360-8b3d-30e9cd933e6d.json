@@ -100,7 +100,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "45o6FaSLtIbLZXKpLZruOL"
+    "_id": "1exLn/F+JOAJiMouXhyios"
   },
   {
     "__type__": "4644f0m2WtABYRy+pn6dOaG",
@@ -110,8 +110,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "pickRadius": 60,
-    "_id": "fflzfS3LJFhpG2wPEolv+p"
+    "pickRadius": 70,
+    "_id": "36WQj7xs9OH7ucy2iZpSiA"
   },
   {
     "__type__": "cc.PrefabInfo",

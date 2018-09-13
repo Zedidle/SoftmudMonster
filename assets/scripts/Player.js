@@ -8,16 +8,7 @@ cc.Class({
             type:cc.Node
         },
 
-        height: 0, //初始高度
 
-        jumpHeight: 150, // 主角跳跃高度
-        jumpDuration: 0.3, // 主角跳跃持续时间
-        accel: 250, // 加速度
-        squashDuration: 0.05, // 辅助形变动作时间
-        maxMoveSpeed: 3000, // 最大移动速度
-        rise_jumpHeight:1,
-        rise_jumpDuration:0.001, 
-        rise_accel:8,
         sur:{
             default:null,
             type:cc.Label
@@ -83,23 +74,27 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         // 手机触摸屏
-        // var touchReceiver = cc.Canvas.instance.node;
-        // var touchReceiver = this.node.children[0];
         var touchReceiver = this.controller;
         touchReceiver.on('touchstart', this.onTouchStart, this);
         touchReceiver.on('touchend', this.onTouchEnd, this); 
     },
 
     initAttr:function(){
-        this.height=0;
-        this.jumpHeight=150;
-        this.jumpDuration=0.3;
-        this.accel=250;
+        this.height=0; //初始高度
+        this.jumpHeight=120; // 主角跳跃高度
+        this.jumpDuration=0.3;  // 主角跳跃持续时间
+        this.accel=400; // 加速度
+        this.squashDuration = 0.03; // 辅助形变动作时间
+        this.maxMoveSpeed = 3000; // 最大移动速度
+    
+        this.rise_jumpHeight = 0.8;
+        this.rise_jumpDuration = 0.0006;
+        this.rise_accel = 3;
     },        
     upgrade: function(){
         this.jumpHeight += (this.rise_jumpHeight);
-        this.jumpDuration += this.rise_jumpDuration * (10 + this.player_jumpDuration) / 20;
-        this.accel += this.rise_accel * (10 + this.player_accel) / 25;
+        this.jumpDuration += this.rise_jumpDuration * (10 + this.player_jumpDuration) / 30;
+        this.accel += this.rise_accel * (10 + this.player_accel) / 30;
     },
     canAddAttr(){
         if(this.player_sur < 1){
@@ -159,7 +154,7 @@ cc.Class({
             // '起跳'
             '正常',
             '漂浮',
-            '弹簧',
+            // '弹簧',
             // '震动',
             '二段',
             '轻功',
@@ -172,7 +167,7 @@ cc.Class({
             // ['easeExponentialOut','easeExponentialIn'] //起跳
             ['easeCubicActionOut','easeCubicActionIn']  //正常
             ,['easeSineOut','easeSineIn'] //漂浮
-            ,['easeElasticOut','easeElasticIn'] //弹簧
+            // ,['easeElasticOut','easeElasticIn'] //弹簧
             // ,['easeBounceOut','easeBounceIn'] //震动
             ,['easeBackOut','easeBackIn'] //二段
             ,['easeQuadraticActionOut','easeQuadraticActionIn']  //轻功
@@ -198,10 +193,11 @@ cc.Class({
         
         if(this.enabled){
 			let game = this.node.parent.getComponent('Game');
-			if(!game.thisJumpGetScore){
-				game.scoreKeeper = 1;
-			}
-			game.thisJumpGetScore = false;
+			if(game.twiceJumpGetScore === 0){
+				game.scoreKeeper = Math.ceil(game.scoreKeeper * 2/3);
+			}else{
+                game.twiceJumpGetScore --;
+            }
         	this.readyJump();
         }
     },
@@ -250,10 +246,10 @@ cc.Class({
                 this.accRight = true;
                 break;
             case cc.macro.KEY.w:
-                this.switchJumpStyle(true);
+                this.switchJumpStyle();
                 break;
             case cc.macro.KEY.s:
-                this.switchJumpStyle(false);
+                this.stopXSpeed();
                 break;
         }
     },
@@ -272,36 +268,33 @@ cc.Class({
 
     onTouchStart (event) {
         var touchLoc = event.getLocation();
-        if (touchLoc.x > cc.winSize.width/2) {
-            if(touchLoc.y > cc.winSize.height * 0.6){
-                this.switchJumpStyle(true);
-            }else{
-                this.accLeft = false;
-                this.accRight = true;
-            }
-        } else {
-            if(touchLoc.y > cc.winSize.height * 0.6){
-                this.switchJumpStyle(false);
-            }else{
+        if(touchLoc.y > cc.winSize.height * 0.6){
+            this.switchJumpStyle();
+        }else{
+            if (touchLoc.x < cc.winSize.width/3) {
                 this.accLeft = true;
                 this.accRight = false;
+            } else if(touchLoc.x > cc.winSize.width * 2/3){
+                this.accLeft = false;
+                this.accRight = true;
+            }else{
+                this.stopXSpeed();
             }
         }
     },
 
-    switchJumpStyle:function(bool){
-        if(bool){
-            if(this.jumpStyleIndex === this.jumpStylesLength-1){
-                this.jumpStyleIndex = 0;
-            }else{
-                this.jumpStyleIndex++;
-            }
+    stopXSpeed(){
+        this.xSpeed /= -1.3;
+    },
+    reverseXSpeed(){
+        this.xSpeed /= -3;
+    },
+
+    switchJumpStyle:function(){
+        if(this.jumpStyleIndex === this.jumpStylesLength-1){
+            this.jumpStyleIndex = 0;
         }else{
-            if(this.jumpStyleIndex===0){
-                this.jumpStyleIndex = this.jumpStylesLength-1;
-            }else{
-                this.jumpStyleIndex--;
-            }
+            this.jumpStyleIndex++;
         }
         this.changeJumpStyle();
     },
@@ -324,8 +317,6 @@ cc.Class({
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
        
-        // var touchReceiver = cc.Canvas.instance.node;
-        // var touchReceiver = this.node.children[0];
         var touchReceiver = this.controller;
         touchReceiver.off('touchstart', this.onTouchStart, this);
         touchReceiver.off('touchend', this.onTouchEnd, this);
@@ -352,10 +343,10 @@ cc.Class({
         // limit player_ position inside screen
         if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.6)) {
             this.node.x = this.node.parent.width/2 + gameLevel*0.6;
-            this.xSpeed = 0;
+            this.reverseXSpeed();
         } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.6)) {
             this.node.x = -this.node.parent.width/2 - gameLevel*0.6;
-            this.xSpeed = 0;
+            this.reverseXSpeed();
         }
     },
 });

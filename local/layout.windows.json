@@ -45,7 +45,7 @@
                     "children": [
                       "scene"
                     ],
-                    "height": 445.125,
+                    "height": 445.20001220703125,
                     "type": "panel",
                     "width": 751.2000122070312
                   },
@@ -54,12 +54,12 @@
                     "children": [
                       "node-library"
                     ],
-                    "height": 445.125,
+                    "height": 445.20001220703125,
                     "type": "panel",
                     "width": 264.0625
                   }
                 ],
-                "height": 445.125,
+                "height": 445.20001220703125,
                 "type": "dock-h",
                 "width": 1018.2625122070312
               },
@@ -69,7 +69,7 @@
                   "console",
                   "timeline"
                 ],
-                "height": 266.07501220703125,
+                "height": 266,
                 "type": "panel",
                 "width": 1018.2625122070312
               }
@@ -99,9 +99,7 @@
         "assets",
         "scene"
       ]
-    },
-    "window-1536645118573": {},
-    "worker": {}
+    }
   },
   "panels": {
     "sprite-editor": {
@@ -111,10 +109,10 @@
       "height": 540
     },
     "builder": {
-      "x": -17,
-      "y": 48,
-      "width": 521,
-      "height": 748
+      "x": 308,
+      "y": 56,
+      "width": 772,
+      "height": 724
     },
     "project-settings": {
       "x": 136,
