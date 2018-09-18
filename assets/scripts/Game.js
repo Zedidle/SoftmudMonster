@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+
+
 cc.Class({
     extends: cc.Component,
 
@@ -45,12 +49,15 @@ cc.Class({
             type: cc.Prefab
         },
 
+        rankList:{
+            default: null,
+            type: cc.Label
+        },
         // 地面节点，用于确定星星生成的高度
         ground: {
             default: null,
             type: cc.Node
         },
-
         // player 节点，用于获取主角弹跳的高度，和控制主角行动开关
         player: {
             default: null,
@@ -98,6 +105,10 @@ cc.Class({
             default: '',
             multiline: true
         },
+        winScoreLabel :{
+            default:null,
+            type: cc.Label
+        },
         gameWinAudio: {
             default: null,
             type: cc.AudioClip
@@ -109,7 +120,6 @@ cc.Class({
     },
 
     onLoad () {
-
 
         cc.audioEngine.playEffect(this.bgm, true);
 
@@ -156,7 +166,6 @@ cc.Class({
         this.title.active = false;
         this.initGame();
         this.iniBg();
-
         // 开始计时
         this.startGameTimer();
         // 初始化计分
@@ -190,17 +199,40 @@ cc.Class({
     	let c = this.menuHideAll();
     	c[1].active = true;
     },
-    menuToGuide(){
+    menuToShop(){
         let c = this.menuHideAll();
         c[2].active = true;
     },
+    menuToGuide(){
+        let c = this.menuHideAll();
+        c[3].active = true;
+    },
+    menuToRank(){
+        let c = this.menuHideAll();
+        c[4].active = true;
+        axios.get('/ranklist')
+        .then(response=>{
+            console.log(response);
+            this.rankList.string = response.data;
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    },
     menuToAbout(){
     	let c = this.menuHideAll();
-    	c[3].active = true;
+    	c[5].active = true;
     },
+
+
+
 
     iniBg(){
         this.bgs.zIndex = -10;
+		this.bgs.scale = 1;
+        console.log(this.bgs);
+        console.log(this.bgs.scale)
+        
         let bgChildren = this.bgs.children;
         let l = bgChildren.length;
         for(let i of bgChildren){
@@ -224,9 +256,9 @@ cc.Class({
         this.redStar = cc.instantiate(this.redStarPrefab);
         this.node.addChild(this.redStar);
 
-        let destHeight = 370;
+        let destHeight = this.node.height/2 - this.redStar.height/2;
         let randY = this.groundY + this.player.getComponent('Player').jumpHeight + 120;
-        let randX = (Math.random() - 0.5) * 2 * this.node.width/2;
+        let randX = (Math.random() - 0.5) * 2 * (this.node.width/2 - this.redStar.height/2);
         this.redStar.setPosition(cc.v2(randX, randY));
         this.redStar.getComponent('RedStar').init(this);
 
@@ -236,7 +268,7 @@ cc.Class({
                 t.redStar.setPosition(cc.v2(randX, randY));
                 randY++;
                 if(randY<destHeight) rising();
-            },500);
+            },600);
         })();
     },
 
@@ -286,6 +318,7 @@ cc.Class({
         var maxX = this.node.width/2;
         var randX = (Math.random() - 0.5) * 2 * maxX;
         // 返回星星坐标
+        // return cc.v2(randX, randY);
         return cc.v2(randX, randY);
     },
 
@@ -331,7 +364,12 @@ cc.Class({
     gameUpgrade(){
         this.gameLevel++;
         if(this.gameLevel%this.cameraFarSpeed === 0){
-            this.farCamera();
+            // this.farCamera();
+            // 缩小背景图
+            // this.bgs.
+            this.farBg();
+            // console.log(this.bgs.scale)
+            // this.bgs.scale *= 0.9;
         }
         if(this.gameLevel < 21 && this.gameLevel%10 === 0){
             this.starNumber ++;
@@ -340,6 +378,20 @@ cc.Class({
             this.starNumber ++;
             this.iniStarDuration += 0.7;
         }
+    },
+
+    farBg(){
+        let times = 0;
+        // this.bgs.scale *= 0.9;
+        let modify = setInterval(function(){
+            this.bgs.scale *= (999 / 1000);
+            // this.gameCamera.zoomRatio *= (999 / 1000);
+            times++;
+            if(times==10){
+                clearInterval(modify);
+            }
+        }.bind(this),50)
+        cc.audioEngine.playEffect(this.farCameraAudio, false);
     },
 
     // 设置镜头
@@ -367,7 +419,10 @@ cc.Class({
     },
 
     gameWin(){
-        this.youWinNode.children[0]._components[0]._string = 'Final Score: '+ ((300 / this.time.toFixed(2)).toFixed(2) * this.score).toFixed(1) * 10 + '\n' + "Most Hit: "+this.mostHit;
+        this.finalScore = (Math.pow((300 / this.time.toFixed(2)),2).toFixed(2) * this.score).toFixed(1) * 10;
+        this.winScoreLabel.string = 'Final Score: '+ this.finalScore + '\n' + "Most Hit: "+this.mostHit;
+        
+        // this.youWinNode.children[0]._components[0]._string = 'Final Score: '+ this.finalScore + '\n' + "Most Hit: "+this.mostHit;
         this.youWinNode.active = true;
         this.again();
         cc.audioEngine.playEffect(this.gameWinAudio, false); 
@@ -379,8 +434,8 @@ cc.Class({
         cc.audioEngine.playEffect(this.gameOverAudio, false);
     },
 
-
     again(){
+        this.sendScore();
         this.player.getComponent('Player').stopMove();
         this.stopGameTimer();
         this.menuNode.active = true;
@@ -391,6 +446,24 @@ cc.Class({
             i.destroy();
         }
         this.currentStars = [];
+    },
+    sendScore(){
+        console.log(this.time);
+        console.log(this.score);
+        console.log(this.finalScore);
+        let data = {
+            // player:,
+            time:this.time,
+            score:this.score,
+            finalScore:this.finalScore
+        };
+        axios.post('/sendScore',data)
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
     }
 
 });

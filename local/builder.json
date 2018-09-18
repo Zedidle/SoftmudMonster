@@ -1,9 +1,13 @@
 {
   "actualPlatform": "web-mobile",
-  "apiLevel": "",
-  "appABIs": [],
-  "buildPath": "./build",
-  "debug": false,
+  "apiLevel": "android-22",
+  "appABIs": [
+    "armeabi-v7a",
+    "arm64-v8a",
+    "x86"
+  ],
+  "buildPath": "D:\\work\\w1\\games\\softMudMonster",
+  "debug": true,
   "embedWebDebugger": false,
   "keystoreAlias": "",
   "keystoreAliasPassword": "",
@@ -12,7 +16,7 @@
   "platform": "web-mobile",
   "previewHeight": "720",
   "previewWidth": "1280",
-  "sourceMaps": false,
+  "sourceMaps": true,
   "template": "link",
   "useDebugKeystore": true,
   "vsVersion": "auto"

@@ -18,7 +18,7 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 361.1000061035156,
+                "height": 425.125,
                 "type": "panel",
                 "width": 204.0500030517578
               },
@@ -27,7 +27,7 @@
                 "children": [
                   "assets"
                 ],
-                "height": 350.1000061035156,
+                "height": 286.07501220703125,
                 "type": "panel",
                 "width": 204.0500030517578
               }
@@ -109,14 +109,26 @@
       "height": 540
     },
     "builder": {
-      "x": 308,
-      "y": 56,
-      "width": 772,
-      "height": 724
+      "x": 432,
+      "y": 36,
+      "width": 788,
+      "height": 736
     },
     "project-settings": {
       "x": 136,
       "y": 164,
+      "width": 604,
+      "height": 568
+    },
+    "store": {
+      "x": 356,
+      "y": 80,
+      "width": 820,
+      "height": 640
+    },
+    "preferences": {
+      "x": 468,
+      "y": 128,
       "width": 604,
       "height": 568
     }

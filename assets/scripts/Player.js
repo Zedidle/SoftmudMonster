@@ -7,8 +7,14 @@ cc.Class({
             default:null,
             type:cc.Node
         },
-
-
+        mobileController:{
+        	default:null,
+            type:cc.Node
+        },
+        money:{
+            default:null,
+            type:cc.Label
+        },
         sur:{
             default:null,
             type:cc.Label
@@ -57,6 +63,11 @@ cc.Class({
     },
 
     onLoad: function() {
+
+        let money = window.localStorage.getItem('money');
+
+
+
         this.enabled = false;
         // screen boundaries
         this.minPosX = -this.node.parent.width/2;
@@ -73,6 +84,15 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
+        console.log('initInput')
+        if(document.body.clientWidth < 960){
+        	this.mobileController.active = true;
+        }else{
+        	this.mobileController.active = false;
+        }
+        // console.log(document.body.clientWidth)
+        // console.log(document.body.clientHeight)
+        return ;
         // 手机触摸屏
         var touchReceiver = this.controller;
         touchReceiver.on('touchstart', this.onTouchStart, this);
@@ -87,9 +107,9 @@ cc.Class({
         this.squashDuration = 0.03; // 辅助形变动作时间
         this.maxMoveSpeed = 3000; // 最大移动速度
     
-        this.rise_jumpHeight = 0.8;
-        this.rise_jumpDuration = 0.0006;
-        this.rise_accel = 3;
+        this.rise_jumpHeight = 0.7;
+        this.rise_jumpDuration = 0.0005;
+        this.rise_accel = 2.5;
     },        
     upgrade: function(){
         this.jumpHeight += (this.rise_jumpHeight);
@@ -194,7 +214,7 @@ cc.Class({
         if(this.enabled){
 			let game = this.node.parent.getComponent('Game');
 			if(game.twiceJumpGetScore === 0){
-				game.scoreKeeper = Math.ceil(game.scoreKeeper * 2/3);
+				game.scoreKeeper = Math.ceil(game.scoreKeeper * 4/5);
 			}else{
                 game.twiceJumpGetScore --;
             }
@@ -220,6 +240,7 @@ cc.Class({
     },
 
     startMoveAt: function (x,y) {
+        this.canStop = true;
         this.enabled = true;
         this.enabled = true;
         this.xSpeed = 0; // 主角当前水平方向速度
@@ -236,20 +257,32 @@ cc.Class({
         clearInterval(this.jumpInterval);
     },
 
+    turnLeft(){
+        this.accLeft = true;
+        this.accRight = false;
+    },
+    turnRight(){
+    	this.accRight = true;
+        this.accLeft = false;
+    },
+
     onKeyDown (event) {
         // set a flag when key pressed
         switch(event.keyCode) {
             case cc.macro.KEY.a:
-                this.accLeft = true;
+                this.turnLeft();
                 break;
             case cc.macro.KEY.d:
-                this.accRight = true;
+                this.turnRight();
                 break;
             case cc.macro.KEY.w:
                 this.switchJumpStyle();
                 break;
             case cc.macro.KEY.s:
                 this.stopXSpeed();
+                break;
+            case cc.macro.KEY.q:
+                this.speedDown();
                 break;
         }
     },
@@ -284,10 +317,23 @@ cc.Class({
     },
 
     stopXSpeed(){
-        this.xSpeed /= -1.3;
+        if(this.canStop){
+            this.xSpeed /= -1.2;
+        }
+    },
+    speedDown(){
+        this.xSpeed /= 2;
+        setTimeout(function(){
+        	this.xSpeed /= 0.3;
+        }.bind(this),1000);
     },
     reverseXSpeed(){
-        this.xSpeed /= -3;
+        this.xSpeed /= -1.2;
+        this.canStop = false;
+        setTimeout(function() {
+            this.canStop = true;
+        }.bind(this), 100);   
+
     },
 
     switchJumpStyle:function(){
@@ -317,6 +363,7 @@ cc.Class({
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
        
+       	return ;
         var touchReceiver = this.controller;
         touchReceiver.off('touchstart', this.onTouchStart, this);
         touchReceiver.off('touchend', this.onTouchEnd, this);
@@ -341,11 +388,19 @@ cc.Class({
         let gameLevel = this.node.parent.getComponent('Game').gameLevel;
 
         // limit player_ position inside screen
-        if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.6)) {
-            this.node.x = this.node.parent.width/2 + gameLevel*0.6;
+        // if ( this.node.x > (this.node.parent.width/2 + gameLevel*0.6)) {
+        //     this.node.x = this.node.parent.width/2 + gameLevel*0.6;
+        //     this.reverseXSpeed();
+        // } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.6)) {
+        //     this.node.x = -this.node.parent.width/2 - gameLevel*0.6;
+        //     this.reverseXSpeed();
+        // }
+
+        if ( this.node.x > this.node.parent.width/2) {
+            this.node.x = this.node.parent.width/2;
             this.reverseXSpeed();
-        } else if (this.node.x < (-this.node.parent.width/2 - gameLevel*0.6)) {
-            this.node.x = -this.node.parent.width/2 - gameLevel*0.6;
+        } else if (this.node.x < -this.node.parent.width/2) {
+            this.node.x = -this.node.parent.width/2;
             this.reverseXSpeed();
         }
     },

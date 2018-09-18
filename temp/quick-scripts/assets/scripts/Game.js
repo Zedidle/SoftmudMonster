@@ -4,6 +4,12 @@ cc._RF.push(module, '4e12fLSQu1L+KV6QmxDiavU', 'Game', __filename);
 
 'use strict';
 
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 cc.Class({
     extends: cc.Component,
 
@@ -51,12 +57,15 @@ cc.Class({
             type: cc.Prefab
         },
 
+        rankList: {
+            default: null,
+            type: cc.Label
+        },
         // 地面节点，用于确定星星生成的高度
         ground: {
             default: null,
             type: cc.Node
         },
-
         // player 节点，用于获取主角弹跳的高度，和控制主角行动开关
         player: {
             default: null,
@@ -103,6 +112,10 @@ cc.Class({
         touchHint: {
             default: '',
             multiline: true
+        },
+        winScoreLabel: {
+            default: null,
+            type: cc.Label
         },
         gameWinAudio: {
             default: null,
@@ -158,7 +171,6 @@ cc.Class({
         this.title.active = false;
         this.initGame();
         this.iniBg();
-
         // 开始计时
         this.startGameTimer();
         // 初始化计分
@@ -215,16 +227,36 @@ cc.Class({
         var c = this.menuHideAll();
         c[1].active = true;
     },
-    menuToGuide: function menuToGuide() {
+    menuToShop: function menuToShop() {
         var c = this.menuHideAll();
         c[2].active = true;
     },
-    menuToAbout: function menuToAbout() {
+    menuToGuide: function menuToGuide() {
         var c = this.menuHideAll();
         c[3].active = true;
     },
+    menuToRank: function menuToRank() {
+        var _this = this;
+
+        var c = this.menuHideAll();
+        c[4].active = true;
+        _axios2.default.get('/ranklist').then(function (response) {
+            console.log(response);
+            _this.rankList.string = response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    },
+    menuToAbout: function menuToAbout() {
+        var c = this.menuHideAll();
+        c[5].active = true;
+    },
     iniBg: function iniBg() {
         this.bgs.zIndex = -10;
+        this.bgs.scale = 1;
+        console.log(this.bgs);
+        console.log(this.bgs.scale);
+
         var bgChildren = this.bgs.children;
         var l = bgChildren.length;
         var _iteratorNormalCompletion2 = true;
@@ -267,9 +299,9 @@ cc.Class({
         this.redStar = cc.instantiate(this.redStarPrefab);
         this.node.addChild(this.redStar);
 
-        var destHeight = 370;
+        var destHeight = this.node.height / 2 - this.redStar.height / 2;
         var randY = this.groundY + this.player.getComponent('Player').jumpHeight + 120;
-        var randX = (Math.random() - 0.5) * 2 * this.node.width / 2;
+        var randX = (Math.random() - 0.5) * 2 * (this.node.width / 2 - this.redStar.height / 2);
         this.redStar.setPosition(cc.v2(randX, randY));
         this.redStar.getComponent('RedStar').init(this);
 
@@ -279,7 +311,7 @@ cc.Class({
                 t.redStar.setPosition(cc.v2(randX, randY));
                 randY++;
                 if (randY < destHeight) rising();
-            }, 500);
+            }, 600);
         })();
     },
     spawnNewStar: function spawnNewStar() {
@@ -325,6 +357,7 @@ cc.Class({
         var maxX = this.node.width / 2;
         var randX = (Math.random() - 0.5) * 2 * maxX;
         // 返回星星坐标
+        // return cc.v2(randX, randY);
         return cc.v2(randX, randY);
     },
     gainScore: function gainScore(pos) {
@@ -365,7 +398,12 @@ cc.Class({
     gameUpgrade: function gameUpgrade() {
         this.gameLevel++;
         if (this.gameLevel % this.cameraFarSpeed === 0) {
-            this.farCamera();
+            // this.farCamera();
+            // 缩小背景图
+            // this.bgs.
+            this.farBg();
+            // console.log(this.bgs.scale)
+            // this.bgs.scale *= 0.9;
         }
         if (this.gameLevel < 21 && this.gameLevel % 10 === 0) {
             this.starNumber++;
@@ -374,6 +412,19 @@ cc.Class({
             this.starNumber++;
             this.iniStarDuration += 0.7;
         }
+    },
+    farBg: function farBg() {
+        var times = 0;
+        // this.bgs.scale *= 0.9;
+        var modify = setInterval(function () {
+            this.bgs.scale *= 999 / 1000;
+            // this.gameCamera.zoomRatio *= (999 / 1000);
+            times++;
+            if (times == 10) {
+                clearInterval(modify);
+            }
+        }.bind(this), 50);
+        cc.audioEngine.playEffect(this.farCameraAudio, false);
     },
 
 
@@ -400,7 +451,10 @@ cc.Class({
         this.timer += dt;
     },
     gameWin: function gameWin() {
-        this.youWinNode.children[0]._components[0]._string = 'Final Score: ' + ((300 / this.time.toFixed(2)).toFixed(2) * this.score).toFixed(1) * 10 + '\n' + "Most Hit: " + this.mostHit;
+        this.finalScore = (Math.pow(300 / this.time.toFixed(2), 2).toFixed(2) * this.score).toFixed(1) * 10;
+        this.winScoreLabel.string = 'Final Score: ' + this.finalScore + '\n' + "Most Hit: " + this.mostHit;
+
+        // this.youWinNode.children[0]._components[0]._string = 'Final Score: '+ this.finalScore + '\n' + "Most Hit: "+this.mostHit;
         this.youWinNode.active = true;
         this.again();
         cc.audioEngine.playEffect(this.gameWinAudio, false);
@@ -411,6 +465,7 @@ cc.Class({
         cc.audioEngine.playEffect(this.gameOverAudio, false);
     },
     again: function again() {
+        this.sendScore();
         this.player.getComponent('Player').stopMove();
         this.stopGameTimer();
         this.menuNode.active = true;
@@ -443,6 +498,22 @@ cc.Class({
         }
 
         this.currentStars = [];
+    },
+    sendScore: function sendScore() {
+        console.log(this.time);
+        console.log(this.score);
+        console.log(this.finalScore);
+        var data = {
+            // player:,
+            time: this.time,
+            score: this.score,
+            finalScore: this.finalScore
+        };
+        _axios2.default.post('/sendScore', data).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 });
 
