@@ -1,0 +1,101 @@
+2019-03-24T03:14:25.200Z - normal: Load ~/.CocosCreator/settings.json
+2019-03-24T03:14:26.382Z - normal: Initializing Asset Database
+2019-03-24T03:14:26.494Z - normal: checking language setting...
+2019-03-24T03:14:26.494Z - normal: Language: zh
+2019-03-24T03:14:27.760Z - success: preview server running at http://localhost:7456
+2019-03-24T03:14:27.762Z - success: protocol editor-framework registered
+2019-03-24T03:14:27.762Z - success: protocol app registered
+2019-03-24T03:14:27.762Z - success: protocol theme registered
+2019-03-24T03:14:27.762Z - success: protocol packages registered
+2019-03-24T03:14:27.763Z - success: protocol uuid registerred
+2019-03-24T03:14:27.763Z - success: protocol db registerred
+2019-03-24T03:14:27.763Z - success: protocol thumbnail registerred
+2019-03-24T03:14:27.763Z - success: protocol unpack registerred
+2019-03-24T03:14:27.763Z - success: protocol disable-commonjs registerred
+2019-03-24T03:14:28.131Z - normal: connected!
+2019-03-24T03:14:28.132Z - normal: Check project D:\work\w1\cocos-projects\SoftmudMonster
+2019-03-24T03:14:28.134Z - normal: Initializing project D:\work\w1\cocos-projects\SoftmudMonster
+2019-03-24T03:14:28.686Z - normal: Initializing Cocos2d
+2019-03-24T03:14:30.765Z - normal: Initializing engine extends
+2019-03-24T03:14:30.816Z - success: asset-db-debugger loaded
+2019-03-24T03:14:30.823Z - success: baidu-adapter loaded
+2019-03-24T03:14:30.839Z - success: code-editor loaded
+2019-03-24T03:14:30.847Z - success: color-picker loaded
+2019-03-24T03:14:31.015Z - success: fb-audience-network loaded
+2019-03-24T03:14:31.119Z - success: fb-live-stream loaded
+2019-03-24T03:14:31.137Z - success: google-play-instant loaded
+2019-03-24T03:14:31.159Z - success: huawei-runtime loaded
+2019-03-24T03:14:31.163Z - success: jsb-adapter loaded
+2019-03-24T03:14:31.185Z - success: oppo-runtime loaded
+2019-03-24T03:14:31.197Z - success: package-manager loaded
+2019-03-24T03:14:31.407Z - success: qqplay-adapter loaded
+2019-03-24T03:14:31.416Z - success: runtime-dev-tools loaded
+2019-03-24T03:14:31.429Z - success: sdkbox loaded
+2019-03-24T03:14:31.442Z - success: tester loaded
+2019-03-24T03:14:31.450Z - success: ui-grid loaded
+2019-03-24T03:14:31.459Z - success: ui-kit-preview-extra loaded
+2019-03-24T03:14:31.467Z - success: ui-kit-preview loaded
+2019-03-24T03:14:31.470Z - success: ui-kit loaded
+2019-03-24T03:14:31.479Z - success: ui-tree loaded
+2019-03-24T03:14:31.500Z - success: vivo-runtime loaded
+2019-03-24T03:14:31.504Z - success: weapp-adapter loaded
+2019-03-24T03:14:31.546Z - success: assets loaded
+2019-03-24T03:14:31.548Z - success: builder loaded
+2019-03-24T03:14:31.883Z - success: cocos-services loaded
+2019-03-24T03:14:31.892Z - success: console loaded
+2019-03-24T03:14:31.928Z - success: fb-instant-games loaded
+2019-03-24T03:14:31.930Z - success: google-instant-games loaded
+2019-03-24T03:14:31.935Z - success: hierarchy loaded
+2019-03-24T03:14:31.938Z - success: inspector loaded
+2019-03-24T03:14:31.939Z - success: keystore loaded
+2019-03-24T03:14:31.944Z - success: node-library loaded
+2019-03-24T03:14:31.946Z - success: package-asset loaded
+2019-03-24T03:14:31.948Z - success: preferences loaded
+2019-03-24T03:14:31.950Z - success: project-exporter loaded
+2019-03-24T03:14:31.952Z - success: project-importer loaded
+2019-03-24T03:14:31.954Z - success: project-settings loaded
+2019-03-24T03:14:31.958Z - success: scene loaded
+2019-03-24T03:14:31.961Z - success: simulator-debugger loaded
+2019-03-24T03:14:31.962Z - success: sprite-editor loaded
+2019-03-24T03:14:31.966Z - success: store loaded
+2019-03-24T03:14:31.970Z - success: timeline loaded
+2019-03-24T03:14:35.155Z - info: Cocos Services load base data!
+2019-03-24T03:14:41.584Z - normal: Loading packages
+2019-03-24T03:14:41.595Z - normal: Watching packages
+2019-03-24T03:14:42.735Z - normal: Run Application
+2019-03-24T04:20:41.666Z - failed: [db-task][sync-changes] Failed to import asset D:\work\w1\cocos-projects\SoftmudMonster\assets\scripts\panelRole.js, message: Compile error: SyntaxError: D:/work/w1/cocos-projects/SoftmudMonster/assets/scripts/panelRole.js: Unexpected token, expected , (8:23)
+   6 |     properties: {
+   7 |         canAttrAudio:
+>  8 |         cannotAttrAudio:
+     |                        ^
+   9 |     },
+  10 | 
+  11 |     onLoad () {
+    at Parser.pp$5.raise (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp.expect (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:1749:33)
+    at Parser.pp$3.parseObj (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3978:12)
+    at Parser.pp$3.parseExprAtom (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3719:19)
+    at Parser.pp$3.parseExprSubscripts (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3494:19)
+    at Parser.pp$3.parseMaybeUnary (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
+2019-03-24T04:24:02.855Z - failed: [db-task][sync-changes] Failed to import asset D:\work\w1\cocos-projects\SoftmudMonster\assets\scripts\panelRole.js, message: Compile error: SyntaxError: D:/work/w1/cocos-projects/SoftmudMonster/assets/scripts/panelRole.js: Unexpected token, expected , (8:23)
+   6 |     properties: {
+   7 |         canAttrAudio:
+>  8 |         cannotAttrAudio:
+     |                        ^
+   9 |         canAttrAudio: {
+  10 |             default: null,
+  11 |             type: cc.AudioClip
+    at Parser.pp$5.raise (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp.expect (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:1749:33)
+    at Parser.pp$3.parseObj (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3978:12)
+    at Parser.pp$3.parseExprAtom (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3719:19)
+    at Parser.pp$3.parseExprSubscripts (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3494:19)
+    at Parser.pp$3.parseMaybeUnary (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (C:\CocosCreator2.0.9\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)

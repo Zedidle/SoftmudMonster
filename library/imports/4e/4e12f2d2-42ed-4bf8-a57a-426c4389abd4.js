@@ -4,11 +4,7 @@ cc._RF.push(module, '4e12fLSQu1L+KV6QmxDiavU', 'Game');
 
 'use strict';
 
-var _axios = require('axios');
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var UserDataManager = require("UserDataManager");
 
 cc.Class({
     extends: cc.Component,
@@ -61,19 +57,16 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-        // 地面节点，用于确定星星生成的高度
         ground: {
             default: null,
             type: cc.Node
         },
-        // player 节点，用于获取主角弹跳的高度，和控制主角行动开关
         player: {
             default: null,
             type: cc.Node
         },
         twiceJumpGetScore: 0,
         scoreKeeper: 1,
-        // score label 的引用
         scoreDisplay: {
             default: null,
             type: cc.Label
@@ -83,7 +76,6 @@ cc.Class({
             default: null,
             type: cc.AudioClip
         },
-        // 得分音效资源
         scoreAudio: {
             default: null,
             type: cc.AudioClip
@@ -129,6 +121,8 @@ cc.Class({
 
     onLoad: function onLoad() {
 
+        UserDataManager.loadData();
+
         cc.audioEngine.playEffect(this.bgm, true);
 
         this.redStar = null;
@@ -137,19 +131,13 @@ cc.Class({
         this.menuToFirstPanel();
         this.iniBg();
 
-        // 获取地平面的 y 轴坐标
         this.groundY = this.ground.y + this.ground.height / 2 - 10;
 
-        // store last star's x position
         this.currentStarX = 0;
 
-        // is showing menu or running game
         this.enabled = false;
 
-        // initialize control hint
         this.controlHintLabel.string = "操作说明：\n" + (cc.sys.isMobile ? this.touchHint : this.keyboardHint);
-
-        // initialize star and score pool
         this.starPool = new cc.NodePool('Star');
         this.scorePool = new cc.NodePool('ScoreFX');
     },
@@ -171,17 +159,12 @@ cc.Class({
         this.title.active = false;
         this.initGame();
         this.iniBg();
-        // 开始计时
         this.startGameTimer();
-        // 初始化计分
         this.resetScore();
-        // set game state to running
         this.enabled = true;
-        // set button and gameover text out of screen
         this.menuNode.active = false;
         this.gameOverNode.active = false;
         this.youWinNode.active = false;
-        // reset player position and move speed
         this.player.getComponent('Player').startMoveAt(0, this.groundY);
 
         this.spawnNewStar();
@@ -199,7 +182,6 @@ cc.Class({
         try {
             for (var _iterator = c[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var i = _step.value;
-
                 i.active = false;
             }
         } catch (err) {
@@ -223,10 +205,11 @@ cc.Class({
         var c = this.menuHideAll();
         c[0].active = true;
     },
-    menuToAttribute: function menuToAttribute() {
-        var c = this.menuHideAll();
-        c[1].active = true;
-    },
+
+    // menuToAttribute() {
+    //     let c = this.menuHideAll();
+    //     c[1].active = true;
+    // },
     menuToShop: function menuToShop() {
         var c = this.menuHideAll();
         c[2].active = true;
@@ -240,7 +223,7 @@ cc.Class({
 
         var c = this.menuHideAll();
         c[4].active = true;
-        _axios2.default.get('/ranklist').then(function (response) {
+        axios.get('/ranklist').then(function (response) {
             console.log(response);
             _this.rankList.string = response.data;
         }).catch(function (error) {
@@ -299,46 +282,44 @@ cc.Class({
         this.redStar = cc.instantiate(this.redStarPrefab);
         this.node.addChild(this.redStar);
 
-        var destHeight = this.node.height / 2 - this.redStar.height / 2;
-        var randY = this.groundY + this.player.getComponent('Player').jumpHeight + 120;
-        var randX = (Math.random() - 0.5) * 2 * (this.node.width / 2 - this.redStar.height / 2);
-        this.redStar.setPosition(cc.v2(randX, randY));
+        var destY = this.node.height / 2 - this.redStar.height / 2;
+        var startY = this.groundY + this.player.getComponent('Player').jumpHeight + 150;
+        var startX = (Math.random() - 0.5) * 2 * (this.node.width / 2 - this.redStar.height / 2);
+        this.redStar.setPosition(cc.v2(startX, startY));
         this.redStar.getComponent('RedStar').init(this);
 
-        var t = this;
-        (function rising() {
-            setTimeout(function () {
-                t.redStar.setPosition(cc.v2(randX, randY));
-                randY++;
-                if (randY < destHeight) rising();
-            }, 600);
-        })();
+        var yDistance = destY - startY;
+        this.redStar.runAction(cc.moveBy(yDistance * 0.6, 0, destY));
+
+        // let t = this;
+        // (function rising() {
+        //     setTimeout(function () {
+        //         t.redStar.setPosition(cc.v2(startX, startY));
+        //         startY++;
+        //         if (startY < destY) rising();
+        //     }, 600);
+        // })();
     },
     spawnNewStar: function spawnNewStar() {
         var newStar = null;
-        // 使用给定的模板在场景中生成一个新节点
         if (this.starPool.size() > 0) {
-            newStar = this.starPool.get(this); // this will be passed to Star's reuse method
+            newStar = this.starPool.get(this);
+            console.log("Game-spawnNewStart form startPool");
         } else {
             newStar = cc.instantiate(this.starPrefab);
         }
 
-        // 将新增的节点添加到 Canvas 节点下面
         this.node.addChild(newStar);
-        // 为星星设置一个随机位置
         newStar.setPosition(this.getNewStarPosition());
-        // pass Game instance to star
         newStar.getComponent('Star').init(this);
 
-        // start star timer and store star reference
         this.startTimer();
         this.currentStars.push(newStar);
     },
     despawnStar: function despawnStar(star) {
-        star.destroy();
+        this.starPool.put(star);
         this.currentStarNumber--;
-        //如果当前场景中没有星星
-        if (!this.currentStarNumber) {
+        if (this.currentStarNumber === 0) {
             for (var i = 0; i < this.starNumber; i++) {
                 this.spawnNewStar();
             }
@@ -350,14 +331,9 @@ cc.Class({
         this.timer = 0;
     },
     getNewStarPosition: function getNewStarPosition() {
-        // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
         var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 30;
-        // 根据屏幕宽度，随机得到一个星星 x 坐标
-        // var maxX = this.node.width/2 + this.gameLevel*0.3;
         var maxX = this.node.width / 2;
         var randX = (Math.random() - 0.5) * 2 * maxX;
-        // 返回星星坐标
-        // return cc.v2(randX, randY);
         return cc.v2(randX, randY);
     },
     gainScore: function gainScore(pos) {
@@ -365,12 +341,9 @@ cc.Class({
         if (this.scoreKeeper > this.mostHit) {
             this.mostHit = this.scoreKeeper;
         }
-        // 更新 scoreDisplay Label 的文字
         this.scoreDisplay.string = 'Score: ' + this.score;
-
         this.twiceJumpGetScore = 2;
 
-        // 播放特效
         var fx = this.spawnScoreFX();
         var theScoreShow = fx.node.children[0].children[1]._components[0];
         theScoreShow._string = "+" + this.scoreKeeper;
@@ -378,7 +351,6 @@ cc.Class({
         fx.node.setPosition(pos);
         fx.play();
 
-        // 播放得分音效
         cc.audioEngine.playEffect(this.scoreAudio, false);
         this.scoreKeeper++;
     },
@@ -398,12 +370,7 @@ cc.Class({
     gameUpgrade: function gameUpgrade() {
         this.gameLevel++;
         if (this.gameLevel % this.cameraFarSpeed === 0) {
-            // this.farCamera();
-            // 缩小背景图
-            // this.bgs.
             this.farBg();
-            // console.log(this.bgs.scale)
-            // this.bgs.scale *= 0.9;
         }
         if (this.gameLevel < 21 && this.gameLevel % 10 === 0) {
             this.starNumber++;
@@ -415,10 +382,8 @@ cc.Class({
     },
     farBg: function farBg() {
         var times = 0;
-        // this.bgs.scale *= 0.9;
         var modify = setInterval(function () {
             this.bgs.scale *= 999 / 1000;
-            // this.gameCamera.zoomRatio *= (999 / 1000);
             times++;
             if (times == 10) {
                 clearInterval(modify);
@@ -426,35 +391,18 @@ cc.Class({
         }.bind(this), 50);
         cc.audioEngine.playEffect(this.farCameraAudio, false);
     },
-
-
-    // 设置镜头
-    farCamera: function farCamera() {
-        var times = 0;
-        var modify = setInterval(function () {
-            this.gameCamera.zoomRatio *= 999 / 1000;
-            times++;
-            if (times == 8) {
-                clearInterval(modify);
-            }
-        }.bind(this), 50);
-        cc.audioEngine.playEffect(this.farCameraAudio, false);
-    },
     update: function update(dt) {
-        // 每帧更新计时器，超过限度还没有生成新的星星
-        // 就会调用游戏失败逻辑
         if (this.timer > this.starDuration) {
             this.gameOver();
-            this.enabled = false; // disable gameOver logic to avoid load scene repeatedly
+            this.enabled = false;
             return;
         }
         this.timer += dt;
     },
     gameWin: function gameWin() {
-        this.finalScore = (Math.pow(300 / this.time.toFixed(2), 2).toFixed(2) * this.score).toFixed(1) * 10;
+        this.finalScore = (Math.pow(300 / this.time.toFixed(2), 2).toFixed(2) * this.score).toFixed(0);
         this.winScoreLabel.string = 'Final Score: ' + this.finalScore + '\n' + "Most Hit: " + this.mostHit;
 
-        // this.youWinNode.children[0]._components[0]._string = 'Final Score: '+ this.finalScore + '\n' + "Most Hit: "+this.mostHit;
         this.youWinNode.active = true;
         this.again();
         cc.audioEngine.playEffect(this.gameWinAudio, false);
@@ -500,20 +448,7 @@ cc.Class({
         this.currentStars = [];
     },
     sendScore: function sendScore() {
-        console.log(this.time);
-        console.log(this.score);
-        console.log(this.finalScore);
-        var data = {
-            // player:,
-            time: this.time,
-            score: this.score,
-            finalScore: this.finalScore
-        };
-        _axios2.default.post('/sendScore', data).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });
+        console.log("Game-sendScore");
     }
 });
 
