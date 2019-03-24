@@ -1,9 +1,11 @@
 const UserDataManager = {
+    GAME_VERSION: "0.8.0",
+
     loadData() {
         console.log("UserDataManager-loadData");
-        let roleArg = JSON.parse(localStorage.getItem("roleArg"));
+        let roleArg = localStorage.getItem("roleArg");
         if (roleArg) {
-            this.roleArg = roleArg;
+            this.roleArg = JSON.parse(roleArg);
         } else {
             this.roleArg = {
                 maxArgNum: 20,

@@ -18,7 +18,6 @@ cc.Class({
             type: cc.Label
         },
 
-
         jumpAudio: {
             default: null,
             type: cc.AudioClip
@@ -37,7 +36,6 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-
     },
 
     onLoad() {
@@ -64,6 +62,7 @@ cc.Class({
         this.roleArg = UserDataManager.getRoleArg();
         this.canTurn = true;
         this.enabled = true;
+        this.firstJump = true;
         this.xSpeed = 0;
         this.accDir = Math.random() > 0.5 ? 0 : 1;
         this.initAttr();
@@ -121,8 +120,23 @@ cc.Class({
         return r === 'key' ? styleKeys : styleValues;
     },
 
-    jumping() {
 
+    readyJump() {
+        let readyTime = this.jumpDuration * 2 + this.squashDuration * 3;
+        if (this.firstJump) {
+            this.firstJump = false;
+            this.node.runAction(cc.sequence(
+                cc.scaleTo(readyTime, 1.2, 0.8),
+                cc.callFunc(() => {
+                    this.node.scale = 1;
+                })
+            ))
+        }
+        setTimeout(() => {
+            if (this.enabled) this.jumping();
+        }, readyTime * 1000);
+    },
+    jumping() {
         let jumpStyles = this.jumpStyles
             , jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][0]]())
             , jumpDown = cc.moveBy(this.jumpDuration, cc.v2(0, -this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][1]]())
@@ -144,12 +158,7 @@ cc.Class({
         }
     },
 
-    readyJump() {
-        let t = this;
-        setTimeout(() => {
-            if (t.enabled) t.jumping();
-        }, t.jumpDuration * 2000 + t.squashDuration * 3000);
-    },
+
 
     playJumpSound() {
         cc.audioEngine.playEffect(this.jumpAudio, false);
@@ -201,7 +210,7 @@ cc.Class({
         if (this.canTurn) {
             this.xSpeed /= -1.4;
             this.node.runAction(
-                cc.sequence(cc.rotateBy(0.3, this.accDir === 0 ? 360 : -360),
+                cc.sequence(cc.rotateBy(0.5, this.accDir === 0 ? 360 : -360),
                     cc.callFunc(() => {
                         this.node.rotation = 0;
                     })
@@ -227,8 +236,7 @@ cc.Class({
         ));
     },
 
-
-    switchJumpStyle: function () {
+    switchJumpStyle() {
         if (this.jumpStyleIndex === this.jumpStylesLength - 1) {
             this.jumpStyleIndex = 0;
         } else {
@@ -237,7 +245,7 @@ cc.Class({
         this.changeJumpStyle();
     },
 
-    changeJumpStyle: function () {
+    changeJumpStyle() {
         let jumpStyles = this.getJumpStyles('key');
         this.jumpStyleDisplay.string = '跳法：' + jumpStyles[this.jumpStyleIndex];
         cc.audioEngine.playEffect(this.switchJumpStyleAudio, false);

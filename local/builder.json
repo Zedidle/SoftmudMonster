@@ -1,22 +1,22 @@
 {
-  "actualPlatform": "web-mobile",
+  "actualPlatform": "wechatgame",
   "apiLevel": "android-22",
   "appABIs": [
     "armeabi-v7a",
     "arm64-v8a",
     "x86"
   ],
-  "buildPath": "D:\\work\\w1\\games\\softMudMonster",
+  "buildPath": "D:\\work\\w1\\games\\softMudMonster\\build",
   "debug": true,
   "embedWebDebugger": false,
   "keystoreAlias": "",
   "keystoreAliasPassword": "",
   "keystorePassword": "",
   "keystorePath": "",
-  "platform": "web-mobile",
+  "platform": "wechatgame",
   "previewHeight": "720",
   "previewWidth": "1280",
-  "sourceMaps": true,
+  "sourceMaps": false,
   "template": "link",
   "useDebugKeystore": true,
   "vsVersion": "auto"

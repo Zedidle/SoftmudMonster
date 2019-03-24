@@ -42,7 +42,6 @@ cc.Class({
             default: null,
             type: cc.Label
         }
-
     },
 
     onLoad: function onLoad() {
@@ -68,6 +67,7 @@ cc.Class({
         this.roleArg = UserDataManager.getRoleArg();
         this.canTurn = true;
         this.enabled = true;
+        this.firstJump = true;
         this.xSpeed = 0;
         this.accDir = Math.random() > 0.5 ? 0 : 1;
         this.initAttr();
@@ -123,8 +123,21 @@ cc.Class({
         return r === 'key' ? styleKeys : styleValues;
     },
 
-    jumping: function jumping() {
+    readyJump: function readyJump() {
+        var _this = this;
 
+        var readyTime = this.jumpDuration * 2 + this.squashDuration * 3;
+        if (this.firstJump) {
+            this.firstJump = false;
+            this.node.runAction(cc.sequence(cc.scaleTo(readyTime, 1.2, 0.8), cc.callFunc(function () {
+                _this.node.scale = 1;
+            })));
+        }
+        setTimeout(function () {
+            if (_this.enabled) _this.jumping();
+        }, readyTime * 1000);
+    },
+    jumping: function jumping() {
         var jumpStyles = this.jumpStyles,
             jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][0]]()),
             jumpDown = cc.moveBy(this.jumpDuration, cc.v2(0, -this.jumpHeight)).easing(cc[jumpStyles[this.jumpStyleIndex][1]]()),
@@ -144,12 +157,6 @@ cc.Class({
             }
             this.readyJump();
         }
-    },
-    readyJump: function readyJump() {
-        var t = this;
-        setTimeout(function () {
-            if (t.enabled) t.jumping();
-        }, t.jumpDuration * 2000 + t.squashDuration * 3000);
     },
     playJumpSound: function playJumpSound() {
         cc.audioEngine.playEffect(this.jumpAudio, false);
@@ -194,36 +201,34 @@ cc.Class({
         }
     },
     turnXSpeed: function turnXSpeed() {
-        var _this = this;
+        var _this2 = this;
 
         if (this.canTurn) {
             this.xSpeed /= -1.4;
-            this.node.runAction(cc.sequence(cc.rotateBy(0.3, this.accDir === 0 ? 360 : -360), cc.callFunc(function () {
-                _this.node.rotation = 0;
+            this.node.runAction(cc.sequence(cc.rotateBy(0.5, this.accDir === 0 ? 360 : -360), cc.callFunc(function () {
+                _this2.node.rotation = 0;
             })));
             this.turnAcc();
         }
     },
     reverseXSpeed: function reverseXSpeed() {
-        var _this2 = this;
+        var _this3 = this;
 
         this.turnXSpeed();
         this.canTurn = false;
         setTimeout(function () {
-            _this2.canTurn = true;
+            _this3.canTurn = true;
         }, 100);
     },
     speedBounce: function speedBounce() {
-        var _this3 = this;
+        var _this4 = this;
 
         this.xSpeed /= 2;
         this.node.runAction(cc.sequence(cc.scaleTo(1, 0.7), cc.callFunc(function () {
-            _this3.xSpeed *= 3;
-            _this3.node.scale = 1;
+            _this4.xSpeed *= 3;
+            _this4.node.scale = 1;
         })));
     },
-
-
     switchJumpStyle: function switchJumpStyle() {
         if (this.jumpStyleIndex === this.jumpStylesLength - 1) {
             this.jumpStyleIndex = 0;
@@ -232,13 +237,11 @@ cc.Class({
         }
         this.changeJumpStyle();
     },
-
     changeJumpStyle: function changeJumpStyle() {
         var jumpStyles = this.getJumpStyles('key');
         this.jumpStyleDisplay.string = '跳法：' + jumpStyles[this.jumpStyleIndex];
         cc.audioEngine.playEffect(this.switchJumpStyleAudio, false);
     },
-
     onDestroy: function onDestroy() {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
     },

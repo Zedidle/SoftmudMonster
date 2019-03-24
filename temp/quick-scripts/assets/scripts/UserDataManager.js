@@ -5,11 +5,13 @@ cc._RF.push(module, '9b62bsgyLtJ6KHdBbVG1xq8', 'UserDataManager', __filename);
 "use strict";
 
 var UserDataManager = {
+    GAME_VERSION: "0.8.0",
+
     loadData: function loadData() {
         console.log("UserDataManager-loadData");
-        var roleArg = JSON.parse(localStorage.getItem("roleArg"));
+        var roleArg = localStorage.getItem("roleArg");
         if (roleArg) {
-            this.roleArg = roleArg;
+            this.roleArg = JSON.parse(roleArg);
         } else {
             this.roleArg = {
                 maxArgNum: 20,

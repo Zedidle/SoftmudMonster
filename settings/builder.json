@@ -1,17 +1,27 @@
 {
-  "appKey": "",
-  "appSecret": "",
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "appBundle": false,
+  "baidugame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "testappid",
+    "orientation": "portrait",
+    "subContext": ""
+  },
   "encryptJs": true,
   "excludeScenes": [],
   "fb-instant-games": {},
-  "includeAnySDK": false,
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
-  "jailbreakPlatform": false,
   "md5Cache": true,
   "mergeStartScene": true,
-  "oauthLoginServer": "",
   "optimizeHotUpdate": false,
   "orientation": {
     "landscapeLeft": true,
@@ -20,7 +30,6 @@
     "upsideDown": false
   },
   "packageName": "org.cocos2d.complete_project",
-  "privateKey": "",
   "qqplay": {
     "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait"
@@ -29,7 +38,7 @@
   "title": "SoftMudMonster",
   "webOrientation": "landscape",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "",
+    "REMOTE_SERVER_ROOT": "https://softmudmonster-1253602131.cos.ap-guangzhou.myqcloud.com/0.8.0",
     "appid": "wx8a68b54cf8a72f07",
     "isSubdomain": false,
     "orientation": "landscape",

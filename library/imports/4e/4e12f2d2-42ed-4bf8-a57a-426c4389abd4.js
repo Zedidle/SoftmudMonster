@@ -15,63 +15,6 @@ cc.Class({
             default: null,
             type: cc.AudioClip
         },
-
-        title: {
-            default: null,
-            type: cc.Node
-        },
-
-        bgs: {
-            default: null,
-            type: cc.Node
-        },
-        gameTimer: {
-            default: null,
-            type: cc.Label
-        },
-
-        gameCamera: {
-            default: null,
-            type: cc.Camera
-        },
-        starNumber: 1,
-        currentStarNumber: 1,
-        currentStars: [],
-        mostHit: 0,
-
-        // 这个属性引用了星星预制资源
-        starPrefab: {
-            default: null,
-            type: cc.Prefab
-        },
-        redStarPrefab: {
-            default: null,
-            type: cc.Prefab
-        },
-        scoreFXPrefab: {
-            default: null,
-            type: cc.Prefab
-        },
-
-        rankList: {
-            default: null,
-            type: cc.Label
-        },
-        ground: {
-            default: null,
-            type: cc.Node
-        },
-        player: {
-            default: null,
-            type: cc.Node
-        },
-        twiceJumpGetScore: 0,
-        scoreKeeper: 1,
-        scoreDisplay: {
-            default: null,
-            type: cc.Label
-        },
-
         farCameraAudio: {
             default: null,
             type: cc.AudioClip
@@ -80,23 +23,38 @@ cc.Class({
             default: null,
             type: cc.AudioClip
         },
+        gameWinAudio: {
+            default: null,
+            type: cc.AudioClip
+        },
+        gameOverAudio: {
+            default: null,
+            type: cc.AudioClip
+        },
 
-        menuNode: {
-            default: null,
-            type: cc.Node
-        },
-        gameOverNode: {
-            default: null,
-            type: cc.Node
-        },
-        youWinNode: {
-            default: null,
-            type: cc.Node
-        },
-        controlHintLabel: {
-            default: null,
-            type: cc.Label
-        },
+        bg: cc.Node,
+        title: cc.Node,
+        gameTimer: cc.Label,
+        gameCamera: cc.Camera,
+        starNumber: 1,
+        currentStarNumber: 1,
+        currentStars: [],
+        mostHit: 0,
+
+        starPrefab: cc.Prefab,
+        redStarPrefab: cc.Prefab,
+        scoreFXPrefab: cc.Prefab,
+        rankList: cc.Label,
+        ground: cc.Node,
+        player: cc.Node,
+        twiceJumpGetScore: 0,
+        scoreKeeper: 1,
+        scoreDisplay: cc.Label,
+
+        menuNode: cc.Node,
+        gameOverNode: cc.Node,
+        youWinNode: cc.Node,
+        controlHintLabel: cc.Label,
         keyboardHint: {
             default: '',
             multiline: true
@@ -105,22 +63,11 @@ cc.Class({
             default: '',
             multiline: true
         },
-        winScoreLabel: {
-            default: null,
-            type: cc.Label
-        },
-        gameWinAudio: {
-            default: null,
-            type: cc.AudioClip
-        },
-        gameOverAudio: {
-            default: null,
-            type: cc.AudioClip
-        }
+        winScoreLabel: cc.Label
+
     },
 
     onLoad: function onLoad() {
-
         UserDataManager.loadData();
 
         cc.audioEngine.playEffect(this.bgm, true);
@@ -141,21 +88,7 @@ cc.Class({
         this.starPool = new cc.NodePool('Star');
         this.scorePool = new cc.NodePool('ScoreFX');
     },
-    initGame: function initGame() {
-        this.iniStarDuration = 6;
-        this.starDuration = 0;
-        this.gameLevel = 0;
-        this.cameraFarSpeed = 10; // 拉远镜头频率
-        this.starMoreSpeed = 30; // 星星增加频率
-        this.time = 0;
-        this.score = 0;
-        this.scoreKeeper = 1, this.currentStarNumber = 1;
-        this.mostHit = 0;
-        this.starNumber = 1;
-        this.gameCamera.zoomRatio = 1;
-    },
     startGame: function startGame() {
-
         this.title.active = false;
         this.initGame();
         this.iniBg();
@@ -170,7 +103,19 @@ cc.Class({
         this.spawnNewStar();
         this.spawnRedStar();
     },
-
+    initGame: function initGame() {
+        this.iniStarDuration = 6;
+        this.starDuration = 0;
+        this.gameLevel = 0;
+        this.cameraFarSpeed = 10; // 拉远镜头频率
+        this.starMoreSpeed = 30; // 星星增加频率
+        this.time = 0;
+        this.score = 0;
+        this.scoreKeeper = 1, this.currentStarNumber = 1;
+        this.mostHit = 0;
+        this.starNumber = 1;
+        this.gameCamera.zoomRatio = 1;
+    },
 
     // 关于菜单部分
     menuHideAll: function menuHideAll() {
@@ -235,39 +180,14 @@ cc.Class({
         c[5].active = true;
     },
     iniBg: function iniBg() {
-        this.bgs.zIndex = -10;
-        this.bgs.scale = 1;
-        console.log(this.bgs);
-        console.log(this.bgs.scale);
+        var _this2 = this;
 
-        var bgChildren = this.bgs.children;
-        var l = bgChildren.length;
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-            for (var _iterator2 = bgChildren[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var i = _step2.value;
-
-                i.active = false;
-            }
-        } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                }
-            } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
-                }
-            }
-        }
-
-        bgChildren[Math.floor(Math.random() * l)].active = true;
+        var bgNumber = 1;
+        var bgIndex = Math.floor(Math.random() * bgNumber);
+        cc.loader.loadRes("bgs/" + bgIndex, cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) console.error(err);
+            _this2.bg.addComponent(cc.Sprite).spriteFrame = spriteFrame;
+        });
     },
     startGameTimer: function startGameTimer() {
         this.timeKeeper = setInterval(function () {
@@ -279,26 +199,27 @@ cc.Class({
         clearInterval(this.timeKeeper);
     },
     spawnRedStar: function spawnRedStar() {
+        var _this3 = this;
+
         this.redStar = cc.instantiate(this.redStarPrefab);
         this.node.addChild(this.redStar);
 
         var destY = this.node.height / 2 - this.redStar.height / 2;
         var startY = this.groundY + this.player.getComponent('Player').jumpHeight + 150;
-        var startX = (Math.random() - 0.5) * 2 * (this.node.width / 2 - this.redStar.height / 2);
+        var startX = (Math.random() - 0.5) * 0.9 * this.node.width;
         this.redStar.setPosition(cc.v2(startX, startY));
         this.redStar.getComponent('RedStar').init(this);
 
         var yDistance = destY - startY;
         this.redStar.runAction(cc.moveBy(yDistance * 0.6, 0, destY));
 
-        // let t = this;
-        // (function rising() {
-        //     setTimeout(function () {
-        //         t.redStar.setPosition(cc.v2(startX, startY));
-        //         startY++;
-        //         if (startY < destY) rising();
-        //     }, 600);
-        // })();
+        var roadWidth = this.node.width * 0.9;
+        var totalTime = 20;
+        var speed = roadWidth / totalTime;
+        var time = (roadWidth / 2 - startX) / speed;
+        this.redStar.runAction(cc.sequence(cc.moveTo(time, roadWidth * 0.45, 0), cc.callFunc(function () {
+            _this3.redStar.runAction(cc.repeatForever(cc.sequence(cc.moveTo(totalTime, -roadWidth * 0.45, 0), cc.moveTo(totalTime, roadWidth * 0.45, 0))));
+        })));
     },
     spawnNewStar: function spawnNewStar() {
         var newStar = null;
@@ -310,7 +231,11 @@ cc.Class({
         }
 
         this.node.addChild(newStar);
-        newStar.setPosition(this.getNewStarPosition());
+        var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 30;
+        var randX = (Math.random() - 0.5) * 0.9 * this.node.width;
+        var v2 = cc.v2(randX, randY);
+        newStar.setPosition(v2);
+
         newStar.getComponent('Star').init(this);
 
         this.startTimer();
@@ -329,12 +254,6 @@ cc.Class({
     startTimer: function startTimer() {
         this.starDuration = this.iniStarDuration - this.gameLevel / 150;
         this.timer = 0;
-    },
-    getNewStarPosition: function getNewStarPosition() {
-        var randY = this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 30;
-        var maxX = this.node.width / 2;
-        var randX = (Math.random() - 0.5) * 2 * maxX;
-        return cc.v2(randX, randY);
     },
     gainScore: function gainScore(pos) {
         this.score += this.scoreKeeper;
@@ -381,14 +300,7 @@ cc.Class({
         }
     },
     farBg: function farBg() {
-        var times = 0;
-        var modify = setInterval(function () {
-            this.bgs.scale *= 999 / 1000;
-            times++;
-            if (times == 10) {
-                clearInterval(modify);
-            }
-        }.bind(this), 50);
+        this.bg.runAction(cc.scaleBy(0.5, 0.99));
         cc.audioEngine.playEffect(this.farCameraAudio, false);
     },
     update: function update(dt) {
@@ -420,27 +332,27 @@ cc.Class({
         this.enabled = false;
         this.starPool.clear();
         this.redStar.destroy();
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
 
         try {
-            for (var _iterator3 = this.currentStars[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                var i = _step3.value;
+            for (var _iterator2 = this.currentStars[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var i = _step2.value;
 
                 i.destroy();
             }
         } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
         } finally {
             try {
-                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                    _iterator3.return();
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
                 }
             } finally {
-                if (_didIteratorError3) {
-                    throw _iteratorError3;
+                if (_didIteratorError2) {
+                    throw _iteratorError2;
                 }
             }
         }
