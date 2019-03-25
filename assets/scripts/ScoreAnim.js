@@ -1,11 +1,11 @@
 cc.Class({
     extends: cc.Component,
 
-    init (scoreFX) {
+    init(scoreFX) {
         this.scoreFX = scoreFX;
     },
 
-    hideFX: function () {
+    hideFX() {
         this.scoreFX.despawn();
     },
 });

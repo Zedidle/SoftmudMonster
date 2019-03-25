@@ -38,7 +38,7 @@
   "title": "SoftMudMonster",
   "webOrientation": "landscape",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "https://softmudmonster-1253602131.cos.ap-guangzhou.myqcloud.com/0.8.0",
+    "REMOTE_SERVER_ROOT": "http://192.168.43.93/softmudmonster",
     "appid": "wx8a68b54cf8a72f07",
     "isSubdomain": false,
     "orientation": "landscape",

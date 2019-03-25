@@ -21,8 +21,6 @@ cc.Class({
     despawn: function despawn() {
         this.game.despawnScoreFX(this.node);
     },
-
-
     play: function play() {
         this.anim.play('score_pop');
     }

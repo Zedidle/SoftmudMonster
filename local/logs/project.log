@@ -1,365 +1,68 @@
-2019-03-24T08:31:54.480Z - normal: Load ~/.CocosCreator/settings.json
-2019-03-24T08:31:55.717Z - normal: Initializing Asset Database
-2019-03-24T08:31:55.720Z - normal: checking language setting...
-2019-03-24T08:31:55.720Z - normal: Language: zh
-2019-03-24T08:31:56.498Z - success: preview server running at http://localhost:7456
-2019-03-24T08:31:56.501Z - success: protocol editor-framework registered
-2019-03-24T08:31:56.501Z - success: protocol app registered
-2019-03-24T08:31:56.501Z - success: protocol theme registered
-2019-03-24T08:31:56.501Z - success: protocol packages registered
-2019-03-24T08:31:56.502Z - success: protocol uuid registerred
-2019-03-24T08:31:56.502Z - success: protocol db registerred
-2019-03-24T08:31:56.502Z - success: protocol thumbnail registerred
-2019-03-24T08:31:56.502Z - success: protocol unpack registerred
-2019-03-24T08:31:56.502Z - success: protocol disable-commonjs registerred
-2019-03-24T08:31:56.888Z - normal: connected!
-2019-03-24T08:31:56.889Z - normal: Check project D:\work\w1\cocos-projects\SoftmudMonster
-2019-03-24T08:31:56.892Z - normal: Initializing project D:\work\w1\cocos-projects\SoftmudMonster
-2019-03-24T08:31:57.371Z - normal: Initializing Cocos2d
-2019-03-24T08:31:58.192Z - normal: Initializing engine extends
-2019-03-24T08:31:58.213Z - success: asset-db-debugger loaded
-2019-03-24T08:31:58.214Z - success: baidu-adapter loaded
-2019-03-24T08:31:58.217Z - success: code-editor loaded
-2019-03-24T08:31:58.218Z - success: color-picker loaded
-2019-03-24T08:31:58.320Z - success: fb-audience-network loaded
-2019-03-24T08:31:58.393Z - success: fb-live-stream loaded
-2019-03-24T08:31:58.401Z - success: google-play-instant loaded
-2019-03-24T08:31:58.411Z - success: huawei-runtime loaded
-2019-03-24T08:31:58.415Z - success: jsb-adapter loaded
-2019-03-24T08:31:58.424Z - success: oppo-runtime loaded
-2019-03-24T08:31:58.430Z - success: package-manager loaded
-2019-03-24T08:31:58.578Z - success: qqplay-adapter loaded
-2019-03-24T08:31:58.589Z - success: runtime-dev-tools loaded
-2019-03-24T08:31:58.600Z - success: sdkbox loaded
-2019-03-24T08:31:58.605Z - success: tester loaded
-2019-03-24T08:31:58.609Z - success: ui-grid loaded
-2019-03-24T08:31:58.611Z - success: ui-kit-preview-extra loaded
-2019-03-24T08:31:58.614Z - success: ui-kit-preview loaded
-2019-03-24T08:31:58.616Z - success: ui-kit loaded
-2019-03-24T08:31:58.619Z - success: ui-tree loaded
-2019-03-24T08:31:58.624Z - success: vivo-runtime loaded
-2019-03-24T08:31:58.626Z - success: weapp-adapter loaded
-2019-03-24T08:31:58.667Z - success: assets loaded
-2019-03-24T08:31:58.669Z - success: builder loaded
-2019-03-24T08:31:58.971Z - success: cocos-services loaded
-2019-03-24T08:31:58.976Z - success: console loaded
-2019-03-24T08:31:59.012Z - success: fb-instant-games loaded
-2019-03-24T08:31:59.014Z - success: google-instant-games loaded
-2019-03-24T08:31:59.019Z - success: hierarchy loaded
-2019-03-24T08:31:59.022Z - success: inspector loaded
-2019-03-24T08:31:59.024Z - success: keystore loaded
-2019-03-24T08:31:59.028Z - success: node-library loaded
-2019-03-24T08:31:59.030Z - success: package-asset loaded
-2019-03-24T08:31:59.031Z - success: preferences loaded
-2019-03-24T08:31:59.033Z - success: project-exporter loaded
-2019-03-24T08:31:59.035Z - success: project-importer loaded
-2019-03-24T08:31:59.037Z - success: project-settings loaded
-2019-03-24T08:31:59.042Z - success: scene loaded
-2019-03-24T08:31:59.044Z - success: simulator-debugger loaded
-2019-03-24T08:31:59.046Z - success: sprite-editor loaded
-2019-03-24T08:31:59.051Z - success: store loaded
-2019-03-24T08:31:59.056Z - success: timeline loaded
-2019-03-24T08:32:00.417Z - normal: Loading packages
-2019-03-24T08:32:00.430Z - normal: Watching packages
-2019-03-24T08:32:01.598Z - normal: Run Application
-2019-03-24T08:32:02.412Z - info: Cocos Services load base data!
-2019-03-24T08:32:12.226Z - normal: Start building with options : {
-  "actualPlatform": "wechatgame",
-  "android-instant": {
-    "REMOTE_SERVER_ROOT": "",
-    "host": "",
-    "pathPattern": "",
-    "recordPath": "",
-    "scheme": "https",
-    "skipRecord": false
-  },
-  "apiLevel": "android-22",
-  "appABIs": [
-    "armeabi-v7a",
-    "arm64-v8a",
-    "x86"
-  ],
-  "appBundle": false,
-  "baidugame": {
-    "REMOTE_SERVER_ROOT": "",
-    "appid": "testappid",
-    "orientation": "portrait",
-    "subContext": ""
-  },
-  "buildPath": "D:\\work\\w1\\games\\softMudMonster\\build",
-  "debug": true,
-  "dest": "D:\\work\\w1\\games\\softMudMonster\\build\\wechatgame",
-  "embedWebDebugger": false,
-  "encryptJs": true,
-  "excludeScenes": [],
-  "excludedModules": [],
-  "fb-instant-games": {},
-  "includeSDKBox": false,
-  "inlineSpriteFrames": true,
-  "inlineSpriteFrames_native": true,
-  "md5Cache": true,
-  "mergeStartScene": true,
-  "optimizeHotUpdate": false,
-  "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
-    "upsideDown": false
-  },
-  "packageName": "org.cocos2d.complete_project",
-  "platform": "wechatgame",
-  "previewHeight": "720",
-  "previewWidth": "1280",
-  "qqplay": {
-    "REMOTE_SERVER_ROOT": "",
-    "orientation": "portrait"
-  },
-  "scenes": [
-    "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5"
-  ],
-  "sourceMaps": false,
-  "startScene": "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5",
-  "template": "link",
-  "title": "SoftMudMonster",
-  "useDebugKeystore": true,
-  "vsVersion": "auto",
-  "webOrientation": "landscape",
-  "wechatgame": {
-    "REMOTE_SERVER_ROOT": "http://192.168.43.93/softmudmonster/",
-    "appid": "wx8a68b54cf8a72f07",
-    "isSubdomain": false,
-    "orientation": "landscape",
-    "subContext": ""
-  },
-  "xxteaKey": "9c8fabe4-69ad-44",
-  "zipCompressJs": true,
-  "project": "D:\\work\\w1\\cocos-projects\\SoftmudMonster",
-  "projectName": "SoftMudMonster",
-  "debugBuildWorker": false
-}
-2019-03-24T08:32:12.230Z - normal: Building D:\work\w1\cocos-projects\SoftmudMonster
-2019-03-24T08:32:12.230Z - normal: Destination D:\work\w1\games\softMudMonster\build\wechatgame
-2019-03-24T08:32:12.350Z - normal: Delete D:\work\w1\games\softMudMonster\build\wechatgame\subpackages/**/*,D:\work\w1\games\softMudMonster\build\wechatgame\**\*
-2019-03-24T08:32:15.041Z - normal: Start building assets
-2019-03-24T08:32:15.041Z - normal: Start spawn build-worker
-2019-03-24T08:32:15.952Z - normal: Finish spawn build-worker
-2019-03-24T08:32:15.953Z - normal: Start init build-worker
-2019-03-24T08:32:19.623Z - normal: Finish init build-worker
-2019-03-24T08:32:19.623Z - normal: Start build-assets in worker
-2019-03-24T08:32:20.238Z - normal: Finish build-assets in worker
-2019-03-24T08:32:20.247Z - normal: Finish building assets
-2019-03-24T08:32:20.271Z - normal: Start building plugin scripts
-2019-03-24T08:32:20.278Z - normal: Generating main.js from C:\CocosCreator2.0.9\resources\static\build-templates\shares\main.js
-2019-03-24T08:32:22.257Z - normal: Built to "D:\work\w1\games\softMudMonster\build\wechatgame" successfully
-2019-03-24T08:32:28.955Z - normal: Initializing...
-
-2019-03-24T08:32:28.960Z - normal: idePortFile: C:\Users\zfc\AppData\Local\微信web开发者工具\User Data\Default\.ide
-
-2019-03-24T08:32:29.972Z - normal: starting ide...
-
-2019-03-24T08:32:34.038Z - normal: IDE server has started, listening on http://127.0.0.1:41898
-
-2019-03-24T08:32:34.041Z - normal: initialization finished
-
-2019-03-24T08:32:35.152Z - normal: open IDE success
-
-2019-03-24T08:58:14.866Z - normal: Start building with options : {
-  "actualPlatform": "wechatgame",
-  "android-instant": {
-    "REMOTE_SERVER_ROOT": "",
-    "host": "",
-    "pathPattern": "",
-    "recordPath": "",
-    "scheme": "https",
-    "skipRecord": false
-  },
-  "apiLevel": "android-22",
-  "appABIs": [
-    "armeabi-v7a",
-    "arm64-v8a",
-    "x86"
-  ],
-  "appBundle": false,
-  "baidugame": {
-    "REMOTE_SERVER_ROOT": "",
-    "appid": "testappid",
-    "orientation": "portrait",
-    "subContext": ""
-  },
-  "buildPath": "D:\\work\\w1\\games\\softMudMonster\\build",
-  "debug": true,
-  "dest": "D:\\work\\w1\\games\\softMudMonster\\build\\wechatgame",
-  "embedWebDebugger": false,
-  "encryptJs": true,
-  "excludeScenes": [],
-  "excludedModules": [],
-  "fb-instant-games": {},
-  "includeSDKBox": false,
-  "inlineSpriteFrames": true,
-  "inlineSpriteFrames_native": true,
-  "md5Cache": true,
-  "mergeStartScene": true,
-  "optimizeHotUpdate": false,
-  "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
-    "upsideDown": false
-  },
-  "packageName": "org.cocos2d.complete_project",
-  "platform": "wechatgame",
-  "previewHeight": "720",
-  "previewWidth": "1280",
-  "qqplay": {
-    "REMOTE_SERVER_ROOT": "",
-    "orientation": "portrait"
-  },
-  "scenes": [
-    "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5"
-  ],
-  "sourceMaps": false,
-  "startScene": "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5",
-  "template": "link",
-  "title": "SoftMudMonster",
-  "useDebugKeystore": true,
-  "vsVersion": "auto",
-  "webOrientation": "landscape",
-  "wechatgame": {
-    "REMOTE_SERVER_ROOT": "https://softmudmonster-1253602131.cos.ap-guangzhou.myqcloud.com/0.8.0/",
-    "appid": "wx8a68b54cf8a72f07",
-    "isSubdomain": false,
-    "orientation": "landscape",
-    "subContext": ""
-  },
-  "xxteaKey": "9c8fabe4-69ad-44",
-  "zipCompressJs": true,
-  "project": "D:\\work\\w1\\cocos-projects\\SoftmudMonster",
-  "projectName": "SoftMudMonster",
-  "debugBuildWorker": false
-}
-2019-03-24T08:58:14.869Z - normal: Building D:\work\w1\cocos-projects\SoftmudMonster
-2019-03-24T08:58:14.870Z - normal: Destination D:\work\w1\games\softMudMonster\build\wechatgame
-2019-03-24T08:58:14.871Z - normal: Delete D:\work\w1\games\softMudMonster\build\wechatgame\subpackages/**/*,D:\work\w1\games\softMudMonster\build\wechatgame\**\*
-2019-03-24T08:58:17.674Z - normal: Start building assets
-2019-03-24T08:58:17.674Z - normal: Start spawn build-worker
-2019-03-24T08:58:18.523Z - normal: Finish spawn build-worker
-2019-03-24T08:58:18.523Z - normal: Start init build-worker
-2019-03-24T08:58:22.073Z - normal: Finish init build-worker
-2019-03-24T08:58:22.073Z - normal: Start build-assets in worker
-2019-03-24T08:58:22.637Z - normal: Finish build-assets in worker
-2019-03-24T08:58:22.646Z - normal: Finish building assets
-2019-03-24T08:58:22.671Z - normal: Start building plugin scripts
-2019-03-24T08:58:22.679Z - normal: Generating main.js from C:\CocosCreator2.0.9\resources\static\build-templates\shares\main.js
-2019-03-24T08:58:24.569Z - normal: Built to "D:\work\w1\games\softMudMonster\build\wechatgame" successfully
-2019-03-24T08:59:28.121Z - normal: Initializing...
-
-2019-03-24T08:59:28.128Z - normal: idePortFile: C:\Users\zfc\AppData\Local\微信web开发者工具\User Data\Default\.ide
-
-2019-03-24T08:59:29.141Z - normal: starting ide...
-
-2019-03-24T08:59:33.892Z - normal: IDE server has started, listening on http://127.0.0.1:35697
-
-2019-03-24T08:59:33.898Z - normal: initialization finished
-
-2019-03-24T08:59:34.942Z - normal: open IDE success
-
-2019-03-24T09:00:06.847Z - normal: Start building with options : {
-  "actualPlatform": "wechatgame",
-  "android-instant": {
-    "REMOTE_SERVER_ROOT": "",
-    "host": "",
-    "pathPattern": "",
-    "recordPath": "",
-    "scheme": "https",
-    "skipRecord": false
-  },
-  "apiLevel": "android-22",
-  "appABIs": [
-    "armeabi-v7a",
-    "arm64-v8a",
-    "x86"
-  ],
-  "appBundle": false,
-  "baidugame": {
-    "REMOTE_SERVER_ROOT": "",
-    "appid": "testappid",
-    "orientation": "portrait",
-    "subContext": ""
-  },
-  "buildPath": "D:\\work\\w1\\games\\softMudMonster\\build",
-  "debug": true,
-  "dest": "D:\\work\\w1\\games\\softMudMonster\\build\\wechatgame",
-  "embedWebDebugger": false,
-  "encryptJs": true,
-  "excludeScenes": [],
-  "excludedModules": [],
-  "fb-instant-games": {},
-  "includeSDKBox": false,
-  "inlineSpriteFrames": true,
-  "inlineSpriteFrames_native": true,
-  "md5Cache": true,
-  "mergeStartScene": true,
-  "optimizeHotUpdate": false,
-  "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
-    "upsideDown": false
-  },
-  "packageName": "org.cocos2d.complete_project",
-  "platform": "wechatgame",
-  "previewHeight": "720",
-  "previewWidth": "1280",
-  "qqplay": {
-    "REMOTE_SERVER_ROOT": "",
-    "orientation": "portrait"
-  },
-  "scenes": [
-    "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5"
-  ],
-  "sourceMaps": false,
-  "startScene": "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5",
-  "template": "link",
-  "title": "SoftMudMonster",
-  "useDebugKeystore": true,
-  "vsVersion": "auto",
-  "webOrientation": "landscape",
-  "wechatgame": {
-    "REMOTE_SERVER_ROOT": "https://softmudmonster-1253602131.cos.ap-guangzhou.myqcloud.com/0.8.0",
-    "appid": "wx8a68b54cf8a72f07",
-    "isSubdomain": false,
-    "orientation": "landscape",
-    "subContext": ""
-  },
-  "xxteaKey": "9c8fabe4-69ad-44",
-  "zipCompressJs": true,
-  "project": "D:\\work\\w1\\cocos-projects\\SoftmudMonster",
-  "projectName": "SoftMudMonster",
-  "debugBuildWorker": false
-}
-2019-03-24T09:00:06.850Z - normal: Building D:\work\w1\cocos-projects\SoftmudMonster
-2019-03-24T09:00:06.850Z - normal: Destination D:\work\w1\games\softMudMonster\build\wechatgame
-2019-03-24T09:00:06.851Z - normal: Delete D:\work\w1\games\softMudMonster\build\wechatgame\subpackages/**/*,D:\work\w1\games\softMudMonster\build\wechatgame\**\*
-2019-03-24T09:00:10.033Z - normal: Start building assets
-2019-03-24T09:00:10.034Z - normal: Start spawn build-worker
-2019-03-24T09:00:10.932Z - normal: Finish spawn build-worker
-2019-03-24T09:00:10.932Z - normal: Start init build-worker
-2019-03-24T09:00:14.890Z - normal: Finish init build-worker
-2019-03-24T09:00:14.890Z - normal: Start build-assets in worker
-2019-03-24T09:00:15.560Z - normal: Finish build-assets in worker
-2019-03-24T09:00:15.569Z - normal: Finish building assets
-2019-03-24T09:00:15.596Z - normal: Start building plugin scripts
-2019-03-24T09:00:15.602Z - normal: Generating main.js from C:\CocosCreator2.0.9\resources\static\build-templates\shares\main.js
-2019-03-24T09:00:17.633Z - normal: Built to "D:\work\w1\games\softMudMonster\build\wechatgame" successfully
-2019-03-24T09:01:07.635Z - normal: Initializing...
-
-2019-03-24T09:01:07.641Z - normal: idePortFile: C:\Users\zfc\AppData\Local\微信web开发者工具\User Data\Default\.ide
-
-2019-03-24T09:01:08.654Z - normal: starting ide...
-
-2019-03-24T09:01:12.786Z - normal: IDE server has started, listening on http://127.0.0.1:40998
-
-2019-03-24T09:01:12.792Z - normal: initialization finished
-
-2019-03-24T09:01:13.925Z - normal: open IDE success
-
+2019-03-25T14:09:46.683Z - normal: Load ~/.CocosCreator/settings.json
+2019-03-25T14:09:47.907Z - normal: Initializing Asset Database
+2019-03-25T14:09:48.036Z - normal: checking language setting...
+2019-03-25T14:09:48.036Z - normal: Language: zh
+2019-03-25T14:09:49.345Z - success: preview server running at http://localhost:7456
+2019-03-25T14:09:49.348Z - success: protocol editor-framework registered
+2019-03-25T14:09:49.348Z - success: protocol app registered
+2019-03-25T14:09:49.348Z - success: protocol theme registered
+2019-03-25T14:09:49.348Z - success: protocol packages registered
+2019-03-25T14:09:49.348Z - success: protocol uuid registerred
+2019-03-25T14:09:49.349Z - success: protocol db registerred
+2019-03-25T14:09:49.349Z - success: protocol thumbnail registerred
+2019-03-25T14:09:49.349Z - success: protocol unpack registerred
+2019-03-25T14:09:49.349Z - success: protocol disable-commonjs registerred
+2019-03-25T14:09:50.192Z - normal: connected!
+2019-03-25T14:09:50.196Z - normal: Check project D:\work\w1\cocos-projects\SoftmudMonster
+2019-03-25T14:09:50.203Z - normal: Initializing project D:\work\w1\cocos-projects\SoftmudMonster
+2019-03-25T14:09:50.783Z - normal: Initializing Cocos2d
+2019-03-25T14:09:52.679Z - normal: Initializing engine extends
+2019-03-25T14:09:52.715Z - success: asset-db-debugger loaded
+2019-03-25T14:09:52.722Z - success: baidu-adapter loaded
+2019-03-25T14:09:52.736Z - success: code-editor loaded
+2019-03-25T14:09:52.744Z - success: color-picker loaded
+2019-03-25T14:09:52.894Z - success: fb-audience-network loaded
+2019-03-25T14:09:52.986Z - success: fb-live-stream loaded
+2019-03-25T14:09:53.005Z - success: google-play-instant loaded
+2019-03-25T14:09:53.029Z - success: huawei-runtime loaded
+2019-03-25T14:09:53.033Z - success: jsb-adapter loaded
+2019-03-25T14:09:53.056Z - success: oppo-runtime loaded
+2019-03-25T14:09:53.066Z - success: package-manager loaded
+2019-03-25T14:09:53.365Z - success: qqplay-adapter loaded
+2019-03-25T14:09:53.375Z - success: runtime-dev-tools loaded
+2019-03-25T14:09:53.390Z - success: sdkbox loaded
+2019-03-25T14:09:53.403Z - success: tester loaded
+2019-03-25T14:09:53.412Z - success: ui-grid loaded
+2019-03-25T14:09:53.420Z - success: ui-kit-preview-extra loaded
+2019-03-25T14:09:53.429Z - success: ui-kit-preview loaded
+2019-03-25T14:09:53.431Z - success: ui-kit loaded
+2019-03-25T14:09:53.440Z - success: ui-tree loaded
+2019-03-25T14:09:53.462Z - success: vivo-runtime loaded
+2019-03-25T14:09:53.467Z - success: weapp-adapter loaded
+2019-03-25T14:09:53.511Z - success: assets loaded
+2019-03-25T14:09:53.514Z - success: builder loaded
+2019-03-25T14:09:53.869Z - success: cocos-services loaded
+2019-03-25T14:09:53.879Z - success: console loaded
+2019-03-25T14:09:53.916Z - success: fb-instant-games loaded
+2019-03-25T14:09:53.918Z - success: google-instant-games loaded
+2019-03-25T14:09:53.923Z - success: hierarchy loaded
+2019-03-25T14:09:53.926Z - success: inspector loaded
+2019-03-25T14:09:53.928Z - success: keystore loaded
+2019-03-25T14:09:53.933Z - success: node-library loaded
+2019-03-25T14:09:53.935Z - success: package-asset loaded
+2019-03-25T14:09:53.936Z - success: preferences loaded
+2019-03-25T14:09:53.938Z - success: project-exporter loaded
+2019-03-25T14:09:53.940Z - success: project-importer loaded
+2019-03-25T14:09:53.942Z - success: project-settings loaded
+2019-03-25T14:09:53.947Z - success: scene loaded
+2019-03-25T14:09:53.949Z - success: simulator-debugger loaded
+2019-03-25T14:09:53.951Z - success: sprite-editor loaded
+2019-03-25T14:09:53.955Z - success: store loaded
+2019-03-25T14:09:53.960Z - success: timeline loaded
+2019-03-25T14:09:56.857Z - normal: Loading packages
+2019-03-25T14:09:56.868Z - normal: Watching packages
+2019-03-25T14:09:58.127Z - normal: Run Application
+2019-03-25T14:10:00.306Z - info: Cocos Services load base data!
+2019-03-25T14:10:06.504Z - warn: The target can not be made persist because it's not a cc.Node or it doesn't have _id property.
+2019-03-25T14:15:19.998Z - warn: The target can not be made persist because it's not a cc.Node or it doesn't have _id property.
+2019-03-25T14:17:28.517Z - warn: The target can not be made persist because it's not a cc.Node or it doesn't have _id property.

@@ -1,18 +1,10 @@
 let UserDataManager = require("UserDataManager");
+let AudioManger = require("AudioManager");
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        canAttrAudio: {
-            default: null,
-            type: cc.AudioClip
-        },
-        cannotAttrAudio: {
-            default: null,
-            type: cc.AudioClip
-        },
-
         surValue: {
             default: null,
             type: cc.Label
@@ -57,7 +49,7 @@ cc.Class({
         }
     },
     playAttrAudio(bool) {
-        cc.audioEngine.playEffect(this[bool ? 'canAttrAudio' : 'cannotAttrAudio'], false);
+        AudioManger.instance.play(bool?"canAttr":"cannotAttr");
         return bool;
     },
 

@@ -2,23 +2,15 @@
 cc._RF.push(module, '02b1bOgTmBBebxYHyEXoYlb', 'panelRole', __filename);
 // scripts/panelRole.js
 
-'use strict';
+"use strict";
 
 var UserDataManager = require("UserDataManager");
+var AudioManger = require("AudioManager");
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        canAttrAudio: {
-            default: null,
-            type: cc.AudioClip
-        },
-        cannotAttrAudio: {
-            default: null,
-            type: cc.AudioClip
-        },
-
         surValue: {
             default: null,
             type: cc.Label
@@ -60,7 +52,7 @@ cc.Class({
         }
     },
     playAttrAudio: function playAttrAudio(bool) {
-        cc.audioEngine.playEffect(this[bool ? 'canAttrAudio' : 'cannotAttrAudio'], false);
+        AudioManger.instance.play(bool ? "canAttr" : "cannotAttr");
         return bool;
     },
     addPlayerJumpDuration: function addPlayerJumpDuration() {

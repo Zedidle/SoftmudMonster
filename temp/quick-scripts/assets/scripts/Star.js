@@ -14,23 +14,20 @@ cc.Class({
     onLoad: function onLoad() {
         this.enabled = false;
     },
-    init: function init(game) {
-        this.game = game;
+    init: function init(_main) {
+        this._main = _main;
         this.enabled = true;
         this.node.opacity = 255;
     },
-    reuse: function reuse(game) {
-        this.init(game);
-    },
     onPicked: function onPicked() {
         var pos = this.node.getPosition();
-        this.game.gainScore(pos);
-        this.game.despawnStar(this.node);
-        this.game.player.getComponent('Player').upgrade();
-        this.game.gameUpgrade();
+        this._main.gainScore(pos);
+        this._main.despawnStar(this.node);
+        this._main.player.getComponent('Player').upgrade();
+        this._main.gameUpgrade();
     },
     getPlayerDistance: function getPlayerDistance() {
-        var playerPos = this.game.player.getPosition();
+        var playerPos = this._main.player.getPosition();
         var dist = this.node.position.sub(playerPos).mag();
         return dist;
     },
@@ -40,9 +37,7 @@ cc.Class({
             return;
         }
 
-        var opacityRatio = 1 - this.game.timer / this.game.starDuration;
-        var minOpacity = 50;
-        this.node.opacity = minOpacity + Math.floor(opacityRatio * (255 - minOpacity));
+        this.node.opacity = 100 + Math.floor((1 - this._main.timer / this._main.starsDuration) * 155);
     }
 });
 

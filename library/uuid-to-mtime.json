@@ -245,7 +245,7 @@
     "relativePath": "prefab\\webview.prefab"
   },
   "8f32b26a-6446-43a5-893b-e476e6a29b9b": {
-    "asset": 1536781686413,
+    "asset": 1553433634580,
     "meta": 1526930962000,
     "relativePath": "audio"
   },
@@ -256,8 +256,8 @@
   },
   "5e9fa9a1-c6a0-4fcb-9cab-8bf22d49c771": {
     "asset": 1526930962000,
-    "meta": 1535859564312,
-    "relativePath": "audio\\score.mp3"
+    "meta": 1553433634908,
+    "relativePath": "audio\\addscore.mp3"
   },
   "fbb33c90-3a2b-4581-91c0-b45c9b89db30": {
     "asset": 1526930962000,
@@ -265,7 +265,7 @@
     "relativePath": "mikado_outline_shadow.fnt"
   },
   "51b0ea7f-a166-4130-bf0b-7f70fc60cb1d": {
-    "asset": 1553400704544,
+    "asset": 1553433198451,
     "meta": 1526930962000,
     "relativePath": "scripts"
   },
@@ -288,11 +288,6 @@
     "asset": 1535973154335,
     "meta": 1535973283222,
     "relativePath": "audio\\switchJump.mp3"
-  },
-  "cbcc9ddf-5b9f-4cea-9746-634ae902a9be": {
-    "asset": 1536052127605,
-    "meta": 1536053020281,
-    "relativePath": "scripts\\ScoreAnim.js"
   },
   "d9a89f66-9d94-4202-b0af-b487c7d26951": {
     "asset": 1536055178636,
@@ -333,11 +328,6 @@
     "asset": 1553403998190,
     "meta": 1553403998211,
     "relativePath": "prefabs\\scoreFX.prefab"
-  },
-  "3ca5e35e-2d9f-4672-96a1-450dc9dc3d4e": {
-    "asset": 1536055890527,
-    "meta": 1536055910913,
-    "relativePath": "scripts\\ScoreFX.js"
   },
   "990c3106-4247-4da7-8760-e747a1dba55a": {
     "asset": 1526930962000,
@@ -429,11 +419,6 @@
     "meta": 1536815666170,
     "relativePath": "textures\\PurpleMonster.png"
   },
-  "02b1b3a0-4e60-4179-bc58-1f2117a1895b": {
-    "asset": 1553403197024,
-    "meta": 1553403198365,
-    "relativePath": "scripts\\panelRole.js"
-  },
   "3f4945ad-045f-4d80-befa-4a8a96bb49ce": {
     "asset": 1553403989804,
     "meta": 1553403976811,
@@ -443,11 +428,6 @@
     "asset": 1553406007737,
     "meta": 1553406069109,
     "relativePath": "scripts\\RedStar.js"
-  },
-  "4644fd26-d96b-4005-8472-fa99fa74e686": {
-    "asset": 1553406558537,
-    "meta": 1553406661943,
-    "relativePath": "scripts\\Star.js"
   },
   "24c8a82c-0343-4f94-8f8c-5f9d2a080c6a": {
     "asset": 1553414146723,
@@ -459,29 +439,54 @@
     "meta": 1553415017598,
     "relativePath": "resources\\bgs\\0.png"
   },
-  "6c688bfb-d907-4e29-a982-1824fec5a01d": {
-    "asset": 1553417238432,
-    "meta": 1553417240452,
-    "relativePath": "scripts\\Player.js"
-  },
   "9b62bb20-c8bb-49e8-a1dd-05b546d71abc": {
     "asset": 1553418166417,
     "meta": 1553418730802,
     "relativePath": "scripts\\UserDataManager.js"
   },
   "5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5": {
-    "asset": 1553429199468,
-    "meta": 1553429199497,
-    "relativePath": "game.fire"
-  },
-  "4e12f2d2-42ed-4bf8-a57a-426c4389abd4": {
-    "asset": 1553425956461,
-    "meta": 1553425957181,
-    "relativePath": "scripts\\Game.js"
+    "asset": 1553528945862,
+    "meta": 1553528945896,
+    "relativePath": "Main.fire"
   },
   "d3fc2005-c7aa-4534-a329-68c163ce3e3a": {
-    "asset": 1553426668923,
-    "meta": 1553427055047,
+    "asset": 1553434826356,
+    "meta": 1553434827261,
     "relativePath": "scripts\\WX.js"
+  },
+  "02b1b3a0-4e60-4179-bc58-1f2117a1895b": {
+    "asset": 1553435363869,
+    "meta": 1553435365851,
+    "relativePath": "scripts\\panelRole.js"
+  },
+  "96d3c70b-8bbc-44e7-a3d1-9f13b94de419": {
+    "asset": 1553523629322,
+    "meta": 1553523710825,
+    "relativePath": "scripts\\AudioManager.js"
+  },
+  "cbcc9ddf-5b9f-4cea-9746-634ae902a9be": {
+    "asset": 1553526764371,
+    "meta": 1553526795101,
+    "relativePath": "scripts\\ScoreAnim.js"
+  },
+  "3ca5e35e-2d9f-4672-96a1-450dc9dc3d4e": {
+    "asset": 1553526771572,
+    "meta": 1553526795144,
+    "relativePath": "scripts\\ScoreFX.js"
+  },
+  "4644fd26-d96b-4005-8472-fa99fa74e686": {
+    "asset": 1553526865378,
+    "meta": 1553527082735,
+    "relativePath": "scripts\\Star.js"
+  },
+  "85488cc4-2c5a-40ca-8f01-5fe2854a4b8e": {
+    "asset": 1553527896470,
+    "meta": 1553527897267,
+    "relativePath": "scripts\\Main.js"
+  },
+  "6c688bfb-d907-4e29-a982-1824fec5a01d": {
+    "asset": 1553529384054,
+    "meta": 1553529385655,
+    "relativePath": "scripts\\Player.js"
   }
 }

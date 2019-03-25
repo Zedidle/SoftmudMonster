@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5541688683221554,
-      "y": 0.5541688683221554,
+      "x": 0.5541688683221571,
+      "y": 0.5541688683221571,
       "z": 1
     },
     "_quat": {
@@ -102,16 +102,19 @@
       },
       {
         "__id__": 40
+      },
+      {
+        "__id__": 194
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 194
+        "__id__": 196
       },
       {
-        "__id__": 195
+        "__id__": 197
       }
     ],
     "_prefab": null,
@@ -578,13 +581,7 @@
     "money": {
       "__id__": 37
     },
-    "jumpAudio": {
-      "__uuid__": "eb514f5f-4725-41b8-9568-2643e4af2871"
-    },
     "jumpActionArray": [],
-    "switchJumpStyleAudio": {
-      "__uuid__": "6457c912-21c4-4917-b787-63053834a8f8"
-    },
     "jumpInterval": null,
     "jumpStyleIndex": 0,
     "jumpStyles": null,
@@ -1944,18 +1941,18 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
-      "height": 297
+      "width": 0,
+      "height": 280
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
+      "x": 0,
       "y": 1
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 88,
+      "x": -15,
+      "y": 37,
       "z": 0
     },
     "_scale": {
@@ -2004,15 +2001,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 254,
+      "g": 254,
+      "b": 254,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 195,
-      "height": 57
+      "height": 100
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2022,7 +2019,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -28.5,
+      "y": -50,
       "z": 0
     },
     "_scale": {
@@ -2142,7 +2139,7 @@
       "__uuid__": "771180bc-7bee-488b-835b-4dd532678b71"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -2167,7 +2164,7 @@
     },
     "_enabled": true,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.85,
     "clickEvents": [
       {
         "__id__": 47
@@ -2175,8 +2172,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 0,
-    "transition": 0,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -2284,7 +2281,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -97,
+      "y": -140,
       "z": 0
     },
     "_scale": {
@@ -2429,7 +2426,7 @@
     },
     "_enabled": true,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [
       {
         "__id__": 53
@@ -2437,8 +2434,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 0,
-    "transition": 0,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -2691,7 +2688,7 @@
     },
     "_enabled": true,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [
       {
         "__id__": 59
@@ -2699,8 +2696,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 0,
-    "transition": 0,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -2808,7 +2805,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -157,
+      "y": -200,
       "z": 0
     },
     "_scale": {
@@ -2953,7 +2950,7 @@
     },
     "_enabled": true,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [
       {
         "__id__": 65
@@ -2961,8 +2958,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 0,
-    "transition": 0,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -3021,8 +3018,8 @@
     "target": {
       "__id__": 2
     },
-    "component": "Game",
-    "_componentId": "",
+    "component": "",
+    "_componentId": "4e12fLSQu1L+KV6QmxDiavU",
     "handler": "menuToGuide",
     "customEventData": ""
   },
@@ -3070,7 +3067,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -217,
+      "y": -260,
       "z": 0
     },
     "_scale": {
@@ -3215,7 +3212,7 @@
     },
     "_enabled": true,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [
       {
         "__id__": 71
@@ -3223,8 +3220,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 0,
-    "transition": 0,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -3300,7 +3297,7 @@
         "__id__": 73
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 4,
     "_components": [
       {
@@ -3332,7 +3329,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -277,
+      "y": -200,
       "z": 0
     },
     "_scale": {
@@ -3560,8 +3557,8 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 300,
-      "height": 297
+      "width": 0,
+      "height": 280
     },
     "_resize": 1,
     "_N$layoutType": 2,
@@ -8217,12 +8214,6 @@
       "__id__": 39
     },
     "_enabled": true,
-    "canAttrAudio": {
-      "__uuid__": "08832057-516b-4088-aa28-8013ac8eede1"
-    },
-    "cannotAttrAudio": {
-      "__uuid__": "49d064e6-923f-4310-9274-92b014ad7bf6"
-    },
     "surValue": {
       "__id__": 138
     },
@@ -8759,6 +8750,103 @@
     "_id": "224cSmJ/1KPqMCk7l5NVCC"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "AudioManager",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 2,
+    "_components": [
+      {
+        "__id__": 195
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "groupIndex": 0,
+    "_id": "a9p1xi6fJAV7IHzK59ZZba"
+  },
+  {
+    "__type__": "96d3ccLi7xE56PRnxO5TeQZ",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 194
+    },
+    "_enabled": true,
+    "bgm": {
+      "__uuid__": "23df998b-ce79-49e7-8033-09f6bbf9e8ce"
+    },
+    "farCamera": {
+      "__uuid__": "dc6be51a-31d0-4397-873d-bedd33552d70"
+    },
+    "addScore": {
+      "__uuid__": "5e9fa9a1-c6a0-4fcb-9cab-8bf22d49c771"
+    },
+    "gameWin": {
+      "__uuid__": "8aaf91a6-6faa-4758-bdb8-f5a2f6bf3de4"
+    },
+    "gameOver": {
+      "__uuid__": "561c67bb-514f-47e8-8fb3-5be1aa107349"
+    },
+    "canAttr": {
+      "__uuid__": "08832057-516b-4088-aa28-8013ac8eede1"
+    },
+    "cannotAttr": {
+      "__uuid__": "49d064e6-923f-4310-9274-92b014ad7bf6"
+    },
+    "jump": {
+      "__uuid__": "eb514f5f-4725-41b8-9568-2643e4af2871"
+    },
+    "switchJump": {
+      "__uuid__": "6457c912-21c4-4917-b787-63053834a8f8"
+    },
+    "_id": "8c3h6062tAbbYWtdtaUdbR"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -8776,28 +8864,13 @@
     "_id": "50svK8t2ZGPbNf8RgtVzSv"
   },
   {
-    "__type__": "4e12fLSQu1L+KV6QmxDiavU",
+    "__type__": "85488zELFpAyo8BX+KFSkuO",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 2
     },
     "_enabled": true,
-    "bgm": {
-      "__uuid__": "23df998b-ce79-49e7-8033-09f6bbf9e8ce"
-    },
-    "farCameraAudio": {
-      "__uuid__": "dc6be51a-31d0-4397-873d-bedd33552d70"
-    },
-    "scoreAudio": {
-      "__uuid__": "5e9fa9a1-c6a0-4fcb-9cab-8bf22d49c771"
-    },
-    "gameWinAudio": {
-      "__uuid__": "8aaf91a6-6faa-4758-bdb8-f5a2f6bf3de4"
-    },
-    "gameOverAudio": {
-      "__uuid__": "561c67bb-514f-47e8-8fb3-5be1aa107349"
-    },
     "bg": {
       "__id__": 3
     },
@@ -8807,53 +8880,20 @@
     "gameTimer": {
       "__id__": 193
     },
-    "gameCamera": {
-      "__id__": 5
-    },
-    "starNumber": 1,
-    "currentStarNumber": 1,
-    "currentStars": [],
-    "mostHit": 0,
-    "starPrefab": {
-      "__uuid__": "3ccd5b0c-fd42-4360-8b3d-30e9cd933e6d"
-    },
-    "redStarPrefab": {
-      "__uuid__": "31f27465-f5af-428f-a244-0edaa43cf2a9"
-    },
-    "scoreFXPrefab": {
-      "__uuid__": "e330da29-4b0f-40e6-a144-19c4db50f0a9"
-    },
-    "rankList": {
-      "__id__": 115
-    },
-    "ground": {
-      "__id__": 8
-    },
-    "player": {
-      "__id__": 10
-    },
-    "twiceJumpGetScore": 0,
-    "scoreKeeper": 1,
-    "scoreDisplay": {
-      "__id__": 185
-    },
-    "menuNode": {
-      "__id__": 40
-    },
-    "gameOverNode": {
-      "__id__": 186
-    },
-    "youWinNode": {
-      "__id__": 188
-    },
-    "controlHintLabel": {
-      "__id__": 95
-    },
-    "keyboardHint": "A：向左加速   D：向右加速\nW：切换跳法  S：转换方向\nQ：蓄力",
-    "touchHint": "点击上半屏幕：切换跳法\n点击下半屏幕：\n中：转换方向\n偏左右：向左右加速\n",
-    "winScoreLabel": {
-      "__id__": 190
-    },
-    "_id": "4dAH6ppJFAzqAqm8x558HR"
+    "starPrefab": null,
+    "redStarPrefab": null,
+    "scoreFXPrefab": null,
+    "rankList": null,
+    "ground": null,
+    "player": null,
+    "scoreDisplay": null,
+    "menuNode": null,
+    "gameOverNode": null,
+    "youWinNode": null,
+    "controlHintLabel": null,
+    "keyboardHint": "",
+    "touchHint": "",
+    "winScoreLabel": null,
+    "_id": "93YVpX0R5OML8rmQbmCWTe"
   }
 ]
