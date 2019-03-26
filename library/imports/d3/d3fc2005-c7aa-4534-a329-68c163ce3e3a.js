@@ -20,6 +20,13 @@ var WX = { // 微信平台
         console.log("WX-login");
         if (!this.isWX) return;
 
+        wx.onShareAppMessage(function () {
+            return {
+                title: '摘取红星，其利断金！',
+                imageUrl: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=227293932,2206403720&fm=85&s=91AE46B263526DDA4E52527B03008074'
+            };
+        });
+
         var self = this;
         wx.cloud.init({
             env: self.CONFIG.cloudDB
